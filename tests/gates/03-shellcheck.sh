@@ -12,7 +12,7 @@ fi
 
 scripts=()
 while IFS= read -r s; do scripts+=("$s"); done \
-  < <(find skeleton/hooks tests/gates -name '*.sh' 2>/dev/null | sort)
+  < <(find skeleton/hooks .claude/hooks tests/gates -name '*.sh' 2>/dev/null | sort)
 if shellcheck -S error "${scripts[@]}"; then
   echo "shellcheck: ok"
 else
