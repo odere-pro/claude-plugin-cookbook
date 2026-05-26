@@ -21,7 +21,8 @@ directory under here ships to users when the plugin is installed.
 
 - `.claude/` — this repo's own project config (house rules, dev skills/agents)
 - `CLAUDE.md` (this file) — dev-repo memory, not user context
-- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE`, `tests/`, `.github/` — docs and CI
+- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE` — docs (and `tests/`, `.github/` once you
+  add CI; the starter ships neither)
 - `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint*.jsonc`, `.prettierrc` — repo config
 
 ## Source layout
@@ -34,7 +35,6 @@ directory under here ships to users when the plugin is installed.
 | `hooks/`               | event hooks + scripts        | yes    |
 | `.mcp.json`            | MCP servers                  | yes    |
 | `.claude/`             | dev-repo project config      | no     |
-| `tests/`               | validation gates             | no     |
 
 ## House rules
 
