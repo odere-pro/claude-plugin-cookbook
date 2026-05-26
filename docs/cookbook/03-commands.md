@@ -19,22 +19,22 @@ name comes from the **filename** (`commands/example-command.md` → `/example-pl
 A command file takes the **same frontmatter as a skill** (`04-skills` has the full table). The
 fields you reach for most:
 
-| Field | Purpose |
-| ----- | ------- |
-| `description` | What it does + when; the routing cue. Lead with the trigger. |
-| `disable-model-invocation` | `true` → only the user can run it; Claude never auto-fires it |
-| `allowed-tools` | Pre-approve tools while the command runs (scope them narrowly) |
-| `argument-hint` | Autocomplete hint, e.g. `[issue-number]` |
+| Field                      | Purpose                                                        |
+| -------------------------- | -------------------------------------------------------------- |
+| `description`              | What it does + when; the routing cue. Lead with the trigger.   |
+| `disable-model-invocation` | `true` → only the user can run it; Claude never auto-fires it  |
+| `allowed-tools`            | Pre-approve tools while the command runs (scope them narrowly) |
+| `argument-hint`            | Autocomplete hint, e.g. `[issue-number]`                       |
 
 ## Arguments
 
 Whatever the user types after the command name is available in the body:
 
-| Placeholder | Expands to |
-| ----------- | ---------- |
-| `$ARGUMENTS` | the full argument string |
-| `$0`, `$1`, … | positional args (shell-style quoting; wrap multi-word in quotes) |
-| `$ARGUMENTS[N]` | the Nth argument (0-based) |
+| Placeholder     | Expands to                                                       |
+| --------------- | ---------------------------------------------------------------- |
+| `$ARGUMENTS`    | the full argument string                                         |
+| `$0`, `$1`, …   | positional args (shell-style quoting; wrap multi-word in quotes) |
+| `$ARGUMENTS[N]` | the Nth argument (0-based)                                       |
 
 If the body omits `$ARGUMENTS`, Claude Code appends `ARGUMENTS: <input>` so the command still sees
 what was typed.
@@ -52,9 +52,11 @@ allowed-tools: Read, Bash(git status:*)
 ---
 
 ## Working tree
+
 !`git status --short`
 
 ## Task
+
 Summarize the output above in one or two lines.
 ```
 

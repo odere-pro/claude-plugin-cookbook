@@ -18,6 +18,7 @@ paths:
 ---
 
 # API rules
+
 - All endpoints validate input.
 - Use the standard error envelope.
 ```
@@ -42,7 +43,7 @@ version-independent loading, prefer option 1.
 ## The author side: `.claude/rules/` for plugin development
 
 The most reliable use of path-scoped rules in a plugin repo is **author-only**: house rules for
-*developing* the plugin. `skeleton/.claude/rules/plugin-dev.md` is exactly this — scoped to the
+_developing_ the plugin. `skeleton/.claude/rules/plugin-dev.md` is exactly this — scoped to the
 component directories so it loads only when you edit them:
 
 ```markdown
@@ -55,6 +56,7 @@ paths:
 ---
 
 # Plugin-dev house rules
+
 - Every shipped skill sets `disable-model-invocation: true` unless it must auto-fire.
 - Agents declare `tools` explicitly.
 - Hook scripts use `${CLAUDE_PLUGIN_ROOT}`; no network on the hot path.
@@ -65,9 +67,9 @@ loaded for end users. The `BOOTSTRAP.md` playbook installs this file as part of 
 
 ## `paths:` glob quick reference
 
-| Pattern | Matches |
-| ------- | ------- |
-| `**/*.ts` | all TypeScript files |
-| `src/**/*` | everything under `src/` |
-| `*.md` | markdown at the project root |
+| Pattern             | Matches                                 |
+| ------------------- | --------------------------------------- |
+| `**/*.ts`           | all TypeScript files                    |
+| `src/**/*`          | everything under `src/`                 |
+| `*.md`              | markdown at the project root            |
 | `src/**/*.{ts,tsx}` | brace expansion for multiple extensions |

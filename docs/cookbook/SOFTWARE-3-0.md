@@ -1,7 +1,7 @@
 # Software 3.0: the agent-operable plugin
 
 > **Intent:** Name the thesis this cookbook is shaped around — a plugin is "Software 3.0" not because
-> an agent helped write it, but because an agent can *operate* it end to end.
+> an agent helped write it, but because an agent can _operate_ it end to end.
 > **Reads-with:** [`README.md`](README.md), [`00-overview`](00-overview.md), [`10-validation-and-gates`](10-validation-and-gates.md).
 
 ## The framing
@@ -19,7 +19,7 @@ a human in the loop?**
 > A Claude Code plugin is Software 3.0 when an agent can **install, invoke, configure, and extend** it
 > using only natural language and what the repo ships.
 
-A plugin sits *inside* the agent's runtime, so this is not aspirational — it is the default success
+A plugin sits _inside_ the agent's runtime, so this is not aspirational — it is the default success
 condition, and every component either advances it or quietly breaks it.
 
 ## The contracts that make it true
@@ -30,7 +30,7 @@ Each plugin attribute is, underneath, a contract an agent reads:
    Claude uses to decide whether to load the body. Vague descriptions are broken routing, not a
    style nit ([`04-skills`](04-skills.md)).
 2. **Invocation is declared, not guessed.** `disable-model-invocation` and `user-invocable` state
-   *who* may fire a capability, so an agent never deploys because the code "looked ready"
+   _who_ may fire a capability, so an agent never deploys because the code "looked ready"
    ([`04-skills`](04-skills.md)).
 3. **Authority is least-privilege.** Scoped `allowed-tools` and explicit agent `tools` make the
    blast radius of any component legible and small ([`05-subagents`](05-subagents.md)).

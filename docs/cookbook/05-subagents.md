@@ -25,18 +25,18 @@ You are a focused worker subagent. <role, method, and the exact output shape to 
 
 ## Frontmatter reference
 
-| Field | Purpose |
-| ----- | ------- |
-| `name` | Unique id; appears as `<plugin>:<name>` |
-| `description` | What it does + when Claude should delegate. Routing cue |
-| `model` | `haiku` / `sonnet` / `opus` / `inherit` |
-| `effort` | `low` … `max` |
-| `maxTurns` | Cap on agent turns |
-| `tools` | **Explicit allow-list** of tools the agent may use |
-| `disallowedTools` | Tools to subtract |
-| `skills` | Skills to preload into the agent at startup |
-| `memory` | Enable persistent per-agent auto-memory |
-| `isolation` | Only valid value: `"worktree"` (run in a git worktree) |
+| Field             | Purpose                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `name`            | Unique id; appears as `<plugin>:<name>`                 |
+| `description`     | What it does + when Claude should delegate. Routing cue |
+| `model`           | `haiku` / `sonnet` / `opus` / `inherit`                 |
+| `effort`          | `low` … `max`                                           |
+| `maxTurns`        | Cap on agent turns                                      |
+| `tools`           | **Explicit allow-list** of tools the agent may use      |
+| `disallowedTools` | Tools to subtract                                       |
+| `skills`          | Skills to preload into the agent at startup             |
+| `memory`          | Enable persistent per-agent auto-memory                 |
+| `isolation`       | Only valid value: `"worktree"` (run in a git worktree)  |
 
 > **SHOULD: declare `tools` explicitly.** On the platform `tools` is optional, and **omitting it
 > inherits every tool — including MCP tools.** An explicit list is least-privilege and the calibration
@@ -49,12 +49,12 @@ You are a focused worker subagent. <role, method, and the exact output shape to 
 
 ## Skill ↔ subagent, both directions
 
-| Approach | System prompt | Task | Also loads |
-| -------- | ------------- | ---- | ---------- |
-| Skill with `context: fork` | from the agent type | the SKILL.md body | CLAUDE.md (except Explore/Plan) |
+| Approach                      | System prompt        | Task                        | Also loads                       |
+| ----------------------------- | -------------------- | --------------------------- | -------------------------------- |
+| Skill with `context: fork`    | from the agent type  | the SKILL.md body           | CLAUDE.md (except Explore/Plan)  |
 | Subagent with `skills:` field | the agent's own body | Claude's delegation message | the preloaded skills + CLAUDE.md |
 
-So a skill can *become* a subagent task, and a subagent can *carry* skills as reference. Pick the
+So a skill can _become_ a subagent task, and a subagent can _carry_ skills as reference. Pick the
 first when the work is a one-shot procedure; the second when you want a reusable specialist.
 
 ## When to use a subagent

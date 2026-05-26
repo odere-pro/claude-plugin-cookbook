@@ -27,29 +27,29 @@ skills/<name>/
 
 All fields are optional; only `description` is recommended.
 
-| Field | Purpose |
-| ----- | ------- |
-| `name` | Display label (defaults to the directory name) |
-| `description` | What it does + when to use it. **Routing cue.** Lead with the trigger |
-| `when_to_use` | Extra trigger phrases; appended to `description` |
-| `disable-model-invocation` | `true` → only the user invokes; removes the skill from Claude's routing context |
-| `user-invocable` | `false` → only Claude invokes; hidden from the `/` menu |
-| `allowed-tools` | Pre-approve tools while active (does **not** restrict; narrow the scopes) |
-| `argument-hint` / `arguments` | Autocomplete hint / named positional args |
-| `model` / `effort` | Override model / effort while the skill runs |
-| `paths` | Glob patterns; auto-activate the skill only when matching files are in play |
-| `context: fork` / `agent` | Run the skill in a forked subagent of the named type |
+| Field                         | Purpose                                                                         |
+| ----------------------------- | ------------------------------------------------------------------------------- |
+| `name`                        | Display label (defaults to the directory name)                                  |
+| `description`                 | What it does + when to use it. **Routing cue.** Lead with the trigger           |
+| `when_to_use`                 | Extra trigger phrases; appended to `description`                                |
+| `disable-model-invocation`    | `true` → only the user invokes; removes the skill from Claude's routing context |
+| `user-invocable`              | `false` → only Claude invokes; hidden from the `/` menu                         |
+| `allowed-tools`               | Pre-approve tools while active (does **not** restrict; narrow the scopes)       |
+| `argument-hint` / `arguments` | Autocomplete hint / named positional args                                       |
+| `model` / `effort`            | Override model / effort while the skill runs                                    |
+| `paths`                       | Glob patterns; auto-activate the skill only when matching files are in play     |
+| `context: fork` / `agent`     | Run the skill in a forked subagent of the named type                            |
 
 > **The 1,536-char routing budget.** `description` + `when_to_use` is truncated at 1,536 characters
 > in the skill listing. Put the key use case first; spend the budget on triggers, not prose.
 
 ## Who invokes it
 
-| Frontmatter | You can invoke | Claude can invoke | Description in context? |
-| ----------- | :------------: | :---------------: | :---------------------: |
-| (default) | yes | yes | yes |
-| `disable-model-invocation: true` | yes | no | no |
-| `user-invocable: false` | no | yes | yes |
+| Frontmatter                      | You can invoke | Claude can invoke | Description in context? |
+| -------------------------------- | :------------: | :---------------: | :---------------------: |
+| (default)                        |      yes       |        yes        |           yes           |
+| `disable-model-invocation: true` |      yes       |        no         |           no            |
+| `user-invocable: false`          |       no       |        yes        |           yes           |
 
 > **MUST:** any side-effecting skill (deploy / commit / publish / release / delete / post) sets
 > `disable-model-invocation: true`. You don't want Claude deciding to deploy because the code looks
@@ -79,5 +79,5 @@ Run the analysis: !`python3 ${CLAUDE_SKILL_DIR}/scripts/analyze.py .`
 
 `context: fork` runs the skill's body as the prompt for a fresh subagent (pick the type with
 `agent:`). The forked run has no conversation history — use it for self-contained research or
-generation tasks. For the inverse (a subagent that *preloads* skills as reference), see
+generation tasks. For the inverse (a subagent that _preloads_ skills as reference), see
 `05-subagents`.

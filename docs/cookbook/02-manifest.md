@@ -15,23 +15,23 @@ the moment you want metadata, a pinned version, or custom component paths.
 
 ### Field reference
 
-| Field | Required | Purpose |
-| ----- | -------- | ------- |
-| `name` | **yes** | Unique kebab-case identifier; namespaces components |
-| `$schema` | no | JSON-Schema URL for editor autocomplete (ignored at load) |
-| `displayName` | no | Human-readable name for UI surfaces; may contain spaces |
-| `version` | no | Semver. Pins updates — see version-of-record below |
-| `description` | no | What the plugin does; routing/discovery text |
-| `author` | no | `{ name, email, url }` |
-| `homepage`, `repository` | no | Docs / source URLs |
-| `license` | no | SPDX id (`MIT`, `Apache-2.0`, …) |
-| `keywords` | no | Discovery tags (array) |
-| `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`, `outputStyles` | no | Override default component paths (see below) |
-| `experimental.themes`, `experimental.monitors` | no | Experimental component paths |
-| `userConfig`, `channels`, `dependencies` | no | User-prompted config, message channels, plugin deps |
+| Field                                                                               | Required | Purpose                                                   |
+| ----------------------------------------------------------------------------------- | -------- | --------------------------------------------------------- |
+| `name`                                                                              | **yes**  | Unique kebab-case identifier; namespaces components       |
+| `$schema`                                                                           | no       | JSON-Schema URL for editor autocomplete (ignored at load) |
+| `displayName`                                                                       | no       | Human-readable name for UI surfaces; may contain spaces   |
+| `version`                                                                           | no       | Semver. Pins updates — see version-of-record below        |
+| `description`                                                                       | no       | What the plugin does; routing/discovery text              |
+| `author`                                                                            | no       | `{ name, email, url }`                                    |
+| `homepage`, `repository`                                                            | no       | Docs / source URLs                                        |
+| `license`                                                                           | no       | SPDX id (`MIT`, `Apache-2.0`, …)                          |
+| `keywords`                                                                          | no       | Discovery tags (array)                                    |
+| `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`, `outputStyles` | no       | Override default component paths (see below)              |
+| `experimental.themes`, `experimental.monitors`                                      | no       | Experimental component paths                              |
+| `userConfig`, `channels`, `dependencies`                                            | no       | User-prompted config, message channels, plugin deps       |
 
 Unrecognized top-level fields are **warnings**, not errors — a manifest can double as an npm or
-editor-extension manifest. Wrong *types* (e.g. `keywords` as a string) are hard errors. Run
+editor-extension manifest. Wrong _types_ (e.g. `keywords` as a string) are hard errors. Run
 `claude plugin validate . --strict` in CI to treat warnings as errors and catch typos.
 
 ### Component-path overrides
@@ -40,7 +40,7 @@ You rarely need these — the defaults in `01-anatomy-and-layout` work. When you
 behavior differs by field:
 
 - **Replaces** the default dir: `commands`, `agents`, `outputStyles`, `experimental.*`. To keep the
-  default *and* add more, list it explicitly: `"commands": ["./commands/", "./extras/"]`.
+  default _and_ add more, list it explicitly: `"commands": ["./commands/", "./extras/"]`.
 - **Adds to** the default: `skills` (the default `skills/` is always scanned too).
 - **Own merge rules**: `hooks`, `mcpServers`, `lspServers`.
 
@@ -62,16 +62,16 @@ All override paths are relative and start with `./`.
 
 ## `marketplace.json`
 
-A marketplace is a catalog that distributes one or more plugins. When a repo *is* a single plugin,
+A marketplace is a catalog that distributes one or more plugins. When a repo _is_ a single plugin,
 ship a one-entry marketplace whose plugin `source` is `"./"` (the repo root is the plugin).
 
-| Field | Required | Notes |
-| ----- | -------- | ----- |
-| `name` | **yes** | Marketplace id (kebab-case); public-facing in `install <plugin>@<name>` |
-| `owner` | **yes** | `{ name (req), email? }` |
-| `plugins` | **yes** | Array of entries (below) |
-| `description` | no* | `--strict` validation requires it; always write one |
-| `version`, `$schema`, `metadata.pluginRoot` | no | Catalog metadata |
+| Field                                       | Required | Notes                                                                   |
+| ------------------------------------------- | -------- | ----------------------------------------------------------------------- |
+| `name`                                      | **yes**  | Marketplace id (kebab-case); public-facing in `install <plugin>@<name>` |
+| `owner`                                     | **yes**  | `{ name (req), email? }`                                                |
+| `plugins`                                   | **yes**  | Array of entries (below)                                                |
+| `description`                               | no\*     | `--strict` validation requires it; always write one                     |
+| `version`, `$schema`, `metadata.pluginRoot` | no       | Catalog metadata                                                        |
 
 Each `plugins[]` entry requires `name` and `source`; it may also carry any manifest field plus the
 marketplace-only `category`, `tags`, `strict`. `source` is `"./relative/path"` or an object:
@@ -82,9 +82,7 @@ marketplace-only `category`, `tags`, `strict`. `source` is `"./relative/path"` o
   "name": "your-marketplace",
   "owner": { "name": "Your Name", "email": "you@example.com" },
   "description": "What this marketplace offers.",
-  "plugins": [
-    { "name": "example-plugin", "source": "./", "description": "…", "license": "MIT" }
-  ]
+  "plugins": [{ "name": "example-plugin", "source": "./", "description": "…", "license": "MIT" }]
 }
 ```
 

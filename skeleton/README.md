@@ -1,6 +1,7 @@
 # example-plugin
 
 <!-- REPLACE the your-handle/example-plugin slug below with your repo, then delete this comment. -->
+
 [![CI](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml)
 [![plugin validate --strict](https://img.shields.io/badge/claude%20plugin%20validate-strict-brightgreen)](https://docs.claude.com/en/docs/claude-code/plugins)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -32,13 +33,13 @@ claude --plugin-dir /path/to/example-plugin
 
 ## Components
 
-| Component | Where | Invocation |
-| --------- | ----- | ---------- |
-| Skill | `skills/example-skill/SKILL.md` | `/example-plugin:example-skill` |
-| Command | `commands/example-command.md` | `/example-plugin:example-command` |
-| Subagent | `agents/example-agent.md` | delegated by Claude |
-| Hook | `hooks/hooks.json` | fires on `Write`/`Edit` |
-| MCP server | `.mcp.json` | auto-starts when enabled |
+| Component  | Where                           | Invocation                        |
+| ---------- | ------------------------------- | --------------------------------- |
+| Skill      | `skills/example-skill/SKILL.md` | `/example-plugin:example-skill`   |
+| Command    | `commands/example-command.md`   | `/example-plugin:example-command` |
+| Subagent   | `agents/example-agent.md`       | delegated by Claude               |
+| Hook       | `hooks/hooks.json`              | fires on `Write`/`Edit`           |
+| MCP server | `.mcp.json`                     | auto-starts when enabled          |
 
 ## License
 

@@ -14,22 +14,22 @@ plain repo into a plugin-development repo.
 - **Is:** a complete, plugin-agnostic guide + a working starter scaffold. The worked examples are the
   in-package `skeleton/` and, where a production pattern helps, the `claude-calibration` plugin.
 - **Is not:** a tutorial on what to build, or a guide to any one language/runtime. It documents the
-  *plugin contract*, not your plugin's logic.
+  _plugin contract_, not your plugin's logic.
 
 ## Who it's for
 
 An engineer comfortable with JSON, YAML frontmatter, and shell — who wants to ship a plugin correctly
-the first time and understand *why* each rule exists.
+the first time and understand _why_ each rule exists.
 
 ## How to read it
 
-| Mode | Path |
-| ---- | ---- |
-| **Bootstrap a repo now** | the [`BOOTSTRAP.md`](BOOTSTRAP.md) playbook → copy [`skeleton/`](../../skeleton/) |
-| **Impatient** | [`00`](00-overview.md) → `skeleton/` → [`02`](02-manifest.md) → [`10`](10-validation-and-gates.md) |
-| **Thorough** | sequential [`00`](00-overview.md) → [`13`](13-repository-hygiene.md) |
-| **By component** | [`03`](03-commands.md)–[`08`](08-mcp.md) as needed |
-| **Quality / shipping** | [`10`](10-validation-and-gates.md) → [`09`](09-claude-md-and-author-config.md) → [`11`](11-distribution-and-versioning.md) → [`13`](13-repository-hygiene.md) |
+| Mode                     | Path                                                                                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Bootstrap a repo now** | the [`BOOTSTRAP.md`](BOOTSTRAP.md) playbook → copy [`skeleton/`](../../skeleton/)                                                                             |
+| **Impatient**            | [`00`](00-overview.md) → `skeleton/` → [`02`](02-manifest.md) → [`10`](10-validation-and-gates.md)                                                            |
+| **Thorough**             | sequential [`00`](00-overview.md) → [`13`](13-repository-hygiene.md)                                                                                          |
+| **By component**         | [`03`](03-commands.md)–[`08`](08-mcp.md) as needed                                                                                                            |
+| **Quality / shipping**   | [`10`](10-validation-and-gates.md) → [`09`](09-claude-md-and-author-config.md) → [`11`](11-distribution-and-versioning.md) → [`13`](13-repository-hygiene.md) |
 
 ## Conventions
 
@@ -41,22 +41,22 @@ the first time and understand *why* each rule exists.
 
 ## Chapters
 
-| # | Chapter | Covers |
-| - | ------- | ------ |
-| 00 | [Overview](00-overview.md) | the one mental model: descriptions are always-on, bodies load on invoke |
-| 01 | [Anatomy and layout](01-anatomy-and-layout.md) | every recognized component, default locations, path variables |
-| 02 | [The manifest](02-manifest.md) | `plugin.json` + `marketplace.json` + the version-of-record rule |
-| 03 | [Commands](03-commands.md) | flat-file skills, arguments, dynamic context injection |
-| 04 | [Skills](04-skills.md) | `SKILL.md` frontmatter, bundles, the routing budget, invocation control |
-| 05 | [Subagents](05-subagents.md) | `agents/*.md`, least-privilege `tools`, when to delegate |
-| 06 | [Hooks](06-hooks.md) | `hooks.json`, events, exit codes, the write-guard pattern |
-| 07 | [Rules and path-scoped guidance](07-rules.md) | `paths:` rules vs plugin-shipped guidance |
-| 08 | [MCP servers](08-mcp.md) | `.mcp.json`, path variables, secrets, pairing with a skill |
-| 09 | [CLAUDE.md and author config](09-claude-md-and-author-config.md) | shipped vs author-only; transforming the repo |
-| 10 | [Validation and gates](10-validation-and-gates.md) | the built-in validator + your own CI gates |
-| 11 | [Distribution and versioning](11-distribution-and-versioning.md) | marketplace, scopes, semver, updates |
-| 12 | [Glossary](12-glossary.md) | the canonical vocabulary |
-| 13 | [Repository hygiene](13-repository-hygiene.md) | init, conventional commits, clean history, repo config, lint/format, badges |
+| #   | Chapter                                                          | Covers                                                                      |
+| --- | ---------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 00  | [Overview](00-overview.md)                                       | the one mental model: descriptions are always-on, bodies load on invoke     |
+| 01  | [Anatomy and layout](01-anatomy-and-layout.md)                   | every recognized component, default locations, path variables               |
+| 02  | [The manifest](02-manifest.md)                                   | `plugin.json` + `marketplace.json` + the version-of-record rule             |
+| 03  | [Commands](03-commands.md)                                       | flat-file skills, arguments, dynamic context injection                      |
+| 04  | [Skills](04-skills.md)                                           | `SKILL.md` frontmatter, bundles, the routing budget, invocation control     |
+| 05  | [Subagents](05-subagents.md)                                     | `agents/*.md`, least-privilege `tools`, when to delegate                    |
+| 06  | [Hooks](06-hooks.md)                                             | `hooks.json`, events, exit codes, the write-guard pattern                   |
+| 07  | [Rules and path-scoped guidance](07-rules.md)                    | `paths:` rules vs plugin-shipped guidance                                   |
+| 08  | [MCP servers](08-mcp.md)                                         | `.mcp.json`, path variables, secrets, pairing with a skill                  |
+| 09  | [CLAUDE.md and author config](09-claude-md-and-author-config.md) | shipped vs author-only; transforming the repo                               |
+| 10  | [Validation and gates](10-validation-and-gates.md)               | the built-in validator + your own CI gates                                  |
+| 11  | [Distribution and versioning](11-distribution-and-versioning.md) | marketplace, scopes, semver, updates                                        |
+| 12  | [Glossary](12-glossary.md)                                       | the canonical vocabulary                                                    |
+| 13  | [Repository hygiene](13-repository-hygiene.md)                   | init, conventional commits, clean history, repo config, lint/format, badges |
 
 ## Also in this package
 

@@ -27,28 +27,28 @@ The `skeleton/` passes `claude plugin validate . --strict` with exit 0 — start
 These are the universal checks every plugin should satisfy. The validator catches most; the rest are
 worth a CI gate:
 
-| Invariant | Why |
-| --------- | --- |
-| Every shipped `*.json` parses | a typo in `plugin.json`/`hooks.json`/`.mcp.json` breaks loading |
-| `marketplace.json` entry `name` matches `plugin.json` | install resolves the wrong thing otherwise |
-| Every `SKILL.md`/agent/command has a `description` | no `description`, no routing |
-| All config paths are relative and start with `./` | absolute paths break after the cache copy |
-| Hook scripts are executable and use `${CLAUDE_PLUGIN_ROOT}` | otherwise the hook silently no-ops |
-| No `/Users/…`, `/home/…` in shipped files | a leaked machine path |
-| No token-shaped secrets in shipped files | a leaked credential |
+| Invariant                                                   | Why                                                             |
+| ----------------------------------------------------------- | --------------------------------------------------------------- |
+| Every shipped `*.json` parses                               | a typo in `plugin.json`/`hooks.json`/`.mcp.json` breaks loading |
+| `marketplace.json` entry `name` matches `plugin.json`       | install resolves the wrong thing otherwise                      |
+| Every `SKILL.md`/agent/command has a `description`          | no `description`, no routing                                    |
+| All config paths are relative and start with `./`           | absolute paths break after the cache copy                       |
+| Hook scripts are executable and use `${CLAUDE_PLUGIN_ROOT}` | otherwise the hook silently no-ops                              |
+| No `/Users/…`, `/home/…` in shipped files                   | a leaked machine path                                           |
+| No token-shaped secrets in shipped files                    | a leaked credential                                             |
 
 ## The hardening invariants (house rules)
 
 Beyond "loads correctly," a disciplined plugin enforces conventions the platform leaves optional.
 These mirror the calibration plugin's gate suite — adopt the ones that fit:
 
-| Gate | Protects |
-| ---- | -------- |
-| Skills are `disable-model-invocation: true` (unless meant to auto-fire) | no skill auto-fires a side effect |
-| Agents declare `tools` explicitly | least privilege; no accidental tool inheritance |
-| Rules carry `paths:` | a scoped rule, not an always-on one |
-| Hooks contain no `curl`/`wget`/remote `npx` | no network on the hot path |
-| `CHANGELOG.md` has the current `plugin.json` version | version/changelog drift |
+| Gate                                                                    | Protects                                        |
+| ----------------------------------------------------------------------- | ----------------------------------------------- |
+| Skills are `disable-model-invocation: true` (unless meant to auto-fire) | no skill auto-fires a side effect               |
+| Agents declare `tools` explicitly                                       | least privilege; no accidental tool inheritance |
+| Rules carry `paths:`                                                    | a scoped rule, not an always-on one             |
+| Hooks contain no `curl`/`wget`/remote `npx`                             | no network on the hot path                      |
+| `CHANGELOG.md` has the current `plugin.json` version                    | version/changelog drift                         |
 
 ## A CI gate pattern
 

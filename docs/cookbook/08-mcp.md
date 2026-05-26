@@ -46,8 +46,10 @@ the user at enable time and stores it securely:
 {
   "userConfig": {
     "api_token": {
-      "type": "string", "title": "API token",
-      "description": "Token for the service", "sensitive": true
+      "type": "string",
+      "title": "API token",
+      "description": "Token for the service",
+      "sensitive": true
     }
   }
 }
@@ -59,7 +61,7 @@ values go to the system keychain rather than `settings.json`.
 ## Pair the server with a skill
 
 MCP tools surface automatically, but their raw names and signatures are terse. A thin, `paths:`- or
-description-scoped skill that explains *when* and *how* to use the server's tools makes them
+description-scoped skill that explains _when_ and _how_ to use the server's tools makes them
 discoverable and keeps Claude using them correctly — the skill is the human-readable front door to
 the machine-readable server. (See `04-skills`; this "wrap the integration in a skill" pattern is one
 the calibration rubric actively recommends.)

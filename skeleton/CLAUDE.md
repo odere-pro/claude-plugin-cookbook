@@ -22,19 +22,19 @@ directory under here ships to users when the plugin is installed.
 - `.claude/` — this repo's own project config (house rules, dev skills/agents)
 - `CLAUDE.md` (this file) — dev-repo memory, not user context
 - `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `tests/`, `.github/` — docs and CI
-- `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint.jsonc`, `.prettierrc` — repo config
+- `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint*.jsonc`, `.prettierrc` — repo config
 
 ## Source layout
 
-| Path | Role | Ships? |
-| ---- | ---- | ------ |
-| `.claude-plugin/` | manifest + marketplace | yes |
-| `skills/`, `commands/` | user/Claude-invokable skills | yes |
-| `agents/` | worker subagents | yes |
-| `hooks/` | event hooks + scripts | yes |
-| `.mcp.json` | MCP servers | yes |
-| `.claude/` | dev-repo project config | no |
-| `tests/` | validation gates | no |
+| Path                   | Role                         | Ships? |
+| ---------------------- | ---------------------------- | ------ |
+| `.claude-plugin/`      | manifest + marketplace       | yes    |
+| `skills/`, `commands/` | user/Claude-invokable skills | yes    |
+| `agents/`              | worker subagents             | yes    |
+| `hooks/`               | event hooks + scripts        | yes    |
+| `.mcp.json`            | MCP servers                  | yes    |
+| `.claude/`             | dev-repo project config      | no     |
+| `tests/`               | validation gates             | no     |
 
 ## House rules
 

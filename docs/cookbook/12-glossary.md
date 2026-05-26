@@ -22,7 +22,7 @@ and the advanced ones (LSP, monitor, theme, output style, executable, settings).
 **Command** — a flat-file skill at `commands/<name>.md`; the classic single-file form (`03-commands`).
 
 **Subagent** — an `agents/<name>.md` worker with its own context and toolset that Claude delegates to
-(`05-subagents`). *Agent* and *subagent* are used interchangeably for this; the user-facing actor is
+(`05-subagents`). _Agent_ and _subagent_ are used interchangeably for this; the user-facing actor is
 the main Claude session, the delegate is the subagent.
 
 **Hook** — an event handler in `hooks/hooks.json` that runs in the harness on a lifecycle event;
@@ -32,7 +32,7 @@ a `PreToolUse` hook can **block** a tool call via exit code 2 (`06-hooks`).
 Claude's toolkit automatically (`08-mcp`).
 
 **Rule / path-scoped rule** — a `.claude/rules/*.md` memory file; with `paths:` frontmatter it loads
-only when matching files are in play. A *project/user* feature, not a plugin component (`07-rules`).
+only when matching files are in play. A _project/user_ feature, not a plugin component (`07-rules`).
 
 **`disable-model-invocation`** — skill/command frontmatter; `true` means only the user can invoke it
 and it leaves Claude's routing context. Mandatory for side-effecting skills (`04-skills`).
@@ -60,6 +60,7 @@ state.
 **`${CLAUDE_PROJECT_DIR}`** — the user's project root.
 
 **Version of record** — the precedence rule for a plugin's version: `plugin.json` > marketplace entry
+
 > git SHA > `unknown` (`02-manifest`, `11-distribution-and-versioning`).
 
 **Scope** — where a plugin (or skill) is enabled: `user` / `project` / `local` / `managed`.
@@ -68,8 +69,8 @@ state.
 
 **Gate** — a small standalone CI check enforcing one well-formed-plugin invariant (`10-validation-and-gates`).
 
-**Shipped vs author-only** — *shipped*: recognized component dirs + manifest, loaded for users.
-*Author-only*: `CLAUDE.md`, `.claude/`, `tests/`, `.github/` — copied to the cache, never loaded
+**Shipped vs author-only** — _shipped_: recognized component dirs + manifest, loaded for users.
+_Author-only_: `CLAUDE.md`, `.claude/`, `tests/`, `.github/` — copied to the cache, never loaded
 (`09-claude-md-and-author-config`).
 
 **Conventional Commits** — the `<type>: <subject>` commit convention (`feat` / `fix` / `docs` / …)

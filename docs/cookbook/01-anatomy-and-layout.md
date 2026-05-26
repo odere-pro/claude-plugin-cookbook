@@ -6,7 +6,7 @@
 
 ## The standard layout
 
-Components live at the **plugin root**. The `.claude-plugin/` directory holds *only* the manifest.
+Components live at the **plugin root**. The `.claude-plugin/` directory holds _only_ the manifest.
 
 ```text
 example-plugin/
@@ -31,22 +31,22 @@ example-plugin/
 The commonly-authored components have their own chapters. The rest are listed here so the inventory
 is complete — reach for them only when you need them.
 
-| Component | Default location | Purpose | Chapter |
-| --------- | ---------------- | ------- | ------- |
-| Manifest | `.claude-plugin/plugin.json` | Metadata + optional path overrides | `02` |
-| Skills | `skills/<name>/SKILL.md` | `/name` capabilities, you or Claude invoke | `04` |
-| Commands | `commands/<name>.md` | Flat-file skills (classic form) | `03` |
-| Subagents | `agents/<name>.md` | Specialized workers Claude delegates to | `05` |
-| Hooks | `hooks/hooks.json` | Shell/HTTP/etc. handlers on lifecycle events | `06` |
-| MCP servers | `.mcp.json` | External tools/services over MCP | `08` |
-| Output styles | `output-styles/` | Alternate response formats | (official docs) |
-| Themes | `themes/*.json` | Color themes (experimental) | (official docs) |
-| Monitors | `monitors/monitors.json` | Background watches (experimental) | (official docs) |
-| LSP servers | `.lsp.json` | Language-server code intelligence | (official docs) |
-| Executables | `bin/` | Binaries added to the Bash tool's `PATH` | (official docs) |
-| Settings | `settings.json` | Plugin default settings (`agent`, `subagentStatusLine`) | (official docs) |
+| Component     | Default location             | Purpose                                                 | Chapter         |
+| ------------- | ---------------------------- | ------------------------------------------------------- | --------------- |
+| Manifest      | `.claude-plugin/plugin.json` | Metadata + optional path overrides                      | `02`            |
+| Skills        | `skills/<name>/SKILL.md`     | `/name` capabilities, you or Claude invoke              | `04`            |
+| Commands      | `commands/<name>.md`         | Flat-file skills (classic form)                         | `03`            |
+| Subagents     | `agents/<name>.md`           | Specialized workers Claude delegates to                 | `05`            |
+| Hooks         | `hooks/hooks.json`           | Shell/HTTP/etc. handlers on lifecycle events            | `06`            |
+| MCP servers   | `.mcp.json`                  | External tools/services over MCP                        | `08`            |
+| Output styles | `output-styles/`             | Alternate response formats                              | (official docs) |
+| Themes        | `themes/*.json`              | Color themes (experimental)                             | (official docs) |
+| Monitors      | `monitors/monitors.json`     | Background watches (experimental)                       | (official docs) |
+| LSP servers   | `.lsp.json`                  | Language-server code intelligence                       | (official docs) |
+| Executables   | `bin/`                       | Binaries added to the Bash tool's `PATH`                | (official docs) |
+| Settings      | `settings.json`              | Plugin default settings (`agent`, `subagentStatusLine`) | (official docs) |
 
-Path-scoped **rules** (`.claude/rules/*.md` with `paths:`) are a *project/user* memory feature, not
+Path-scoped **rules** (`.claude/rules/*.md` with `paths:`) are a _project/user_ memory feature, not
 a plugin component — see `07-rules` for how a plugin ships scoped guidance instead.
 
 ## Path variables
@@ -54,11 +54,11 @@ a plugin component — see `07-rules` for how a plugin ships scoped guidance ins
 Reference bundled files through these — never hardcode an absolute path. All three are substituted
 inside skill/agent content, hook/monitor commands, and MCP/LSP configs, and exported to subprocesses.
 
-| Variable | Resolves to | Use for |
-| -------- | ----------- | ------- |
-| `${CLAUDE_PLUGIN_ROOT}` | the plugin's install dir | scripts, configs bundled with the plugin |
-| `${CLAUDE_PLUGIN_DATA}` | a persistent per-plugin dir that survives updates | caches, installed deps, generated state |
-| `${CLAUDE_PROJECT_DIR}` | the user's project root | project-local scripts/config |
+| Variable                | Resolves to                                       | Use for                                  |
+| ----------------------- | ------------------------------------------------- | ---------------------------------------- |
+| `${CLAUDE_PLUGIN_ROOT}` | the plugin's install dir                          | scripts, configs bundled with the plugin |
+| `${CLAUDE_PLUGIN_DATA}` | a persistent per-plugin dir that survives updates | caches, installed deps, generated state  |
+| `${CLAUDE_PROJECT_DIR}` | the user's project root                           | project-local scripts/config             |
 
 > `${CLAUDE_PLUGIN_ROOT}` **changes on every update** and the old dir is cleaned up after ~7 days —
 > treat it as ephemeral, never write state there. Put durable state in `${CLAUDE_PLUGIN_DATA}`.

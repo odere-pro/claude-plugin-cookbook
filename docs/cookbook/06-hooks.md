@@ -36,14 +36,14 @@ event → matcher → handler list:
 
 Hooks fire on a large set of lifecycle events. The ones you'll use most:
 
-| Event | Fires |
-| ----- | ----- |
-| `PreToolUse` | before a tool call — **can block it** |
-| `PostToolUse` | after a tool call succeeds |
-| `UserPromptSubmit` | when the user submits a prompt |
-| `SessionStart` | when a session begins/resumes (e.g. install deps) |
-| `Stop` | when Claude finishes responding |
-| `SubagentStart` / `SubagentStop` | around a subagent's lifecycle |
+| Event                            | Fires                                             |
+| -------------------------------- | ------------------------------------------------- |
+| `PreToolUse`                     | before a tool call — **can block it**             |
+| `PostToolUse`                    | after a tool call succeeds                        |
+| `UserPromptSubmit`               | when the user submits a prompt                    |
+| `SessionStart`                   | when a session begins/resumes (e.g. install deps) |
+| `Stop`                           | when Claude finishes responding                   |
+| `SubagentStart` / `SubagentStop` | around a subagent's lifecycle                     |
 
 (The full list — `PreCompact`, `InstructionsLoaded`, `Notification`, … — is in the official hooks
 reference.) Hook `type` is one of: `command` (run a script), `http` (POST the event JSON),
@@ -53,10 +53,10 @@ reference.) Hook `type` is one of: `command` (run a script), `http` (POST the ev
 
 A `command` hook receives the event as **JSON on stdin** and signals its verdict via exit code:
 
-| Exit | Effect |
-| ---- | ------ |
-| `0` | pass through (for `PostToolUse`, output is advisory) |
-| `2` | in a **`PreToolUse`** hook, **block** the tool call; stderr is fed back to Claude |
+| Exit | Effect                                                                            |
+| ---- | --------------------------------------------------------------------------------- |
+| `0`  | pass through (for `PostToolUse`, output is advisory)                              |
+| `2`  | in a **`PreToolUse`** hook, **block** the tool call; stderr is fed back to Claude |
 
 The exit code is load-bearing. `skeleton/hooks/example-hook.sh` is a non-blocking `PostToolUse`
 example (reads stdin, logs the path, exits 0).
@@ -70,7 +70,7 @@ The discipline that makes a guard safe:
 
 - **Fail open on the irrelevant case.** Exit `0` early when the guard doesn't apply (wrong subagent,
   path already allowed). A guard that errors should not wedge the session.
-- **Zero standing cost.** It runs on *every* matching tool call — keep it a few milliseconds of
+- **Zero standing cost.** It runs on _every_ matching tool call — keep it a few milliseconds of
   local shell.
 
 > **MUST NOT** put `curl`/`wget`/remote `npx` on a hook's hot path. A network round-trip on every

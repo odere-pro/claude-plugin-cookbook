@@ -22,13 +22,13 @@ Users get a plugin one of two ways:
 
 This is the single idea that governs every design decision in the rest of the cookbook.
 
-| Layer | When it's in context | Cost |
-| ----- | -------------------- | ---- |
-| **Listing text** — skill/agent/command *descriptions*, command *names* | Every session, always | Small, but paid by every user on every turn |
-| **Bodies** — a skill's `SKILL.md`, an agent's prompt | Only when the component is invoked | Larger, but paid only when used |
-| **Hooks / MCP servers** | Run in the harness, not the model context | No model-context cost; pay latency on the hot path |
+| Layer                                                                  | When it's in context                      | Cost                                               |
+| ---------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------- |
+| **Listing text** — skill/agent/command _descriptions_, command _names_ | Every session, always                     | Small, but paid by every user on every turn        |
+| **Bodies** — a skill's `SKILL.md`, an agent's prompt                   | Only when the component is invoked        | Larger, but paid only when used                    |
+| **Hooks / MCP servers**                                                | Run in the harness, not the model context | No model-context cost; pay latency on the hot path |
 
-So: a description is a **routing cue** Claude reads to decide *whether* to load the body. Write
+So: a description is a **routing cue** Claude reads to decide _whether_ to load the body. Write
 descriptions for routing ("use when…", "after…"), keep bodies for instructions, and push long
 reference material into supporting files that load on demand. `claude plugin details <name>` prints
 the always-on vs on-invoke token cost of each component — read it before you ship.
@@ -42,8 +42,8 @@ A plugin contributes context through **skills, agents, and hooks** — not throu
 > a skill. (See `09-claude-md-and-author-config`.)
 
 Likewise, a `.claude/` directory in the plugin repo is author-only project config — it is not a
-plugin component and is never loaded for users. The clean split between *shipped components* and
-*author-only config* is the heart of "transforming a repo for plugin purposes" (the `BOOTSTRAP.md`
+plugin component and is never loaded for users. The clean split between _shipped components_ and
+_author-only config_ is the heart of "transforming a repo for plugin purposes" (the `BOOTSTRAP.md`
 playbook in this package walks it step by step).
 
 ## The fastest path

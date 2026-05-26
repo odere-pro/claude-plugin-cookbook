@@ -5,7 +5,7 @@
 > `BOOTSTRAP.md` to scaffold a plugin," or run it by hand.
 > **Reads-with:** [`README.md`](README.md), [`09-claude-md-and-author-config`](09-claude-md-and-author-config.md), the chapter cited in each step.
 
-> **The playbook vs. `skeleton/CLAUDE.md`, don't confuse them.** *This* file (`BOOTSTRAP.md`) is the
+> **The playbook vs. `skeleton/CLAUDE.md`, don't confuse them.** _This_ file (`BOOTSTRAP.md`) is the
 > **playbook**. It is part of the cookbook, not part of your plugin. `skeleton/CLAUDE.md` is the
 > **template** this playbook installs as your new repo's project memory. Step 3 makes the swap.
 
@@ -38,11 +38,11 @@ Answer three questions before touching files:
 
 ## Phase 2 — Override `.claude/` (author config)
 
-This is where the repo becomes a *plugin-development* repo, not just a plugin. ([`09-claude-md-and-author-config`](09-claude-md-and-author-config.md), [`07-rules`](07-rules.md))
+This is where the repo becomes a _plugin-development_ repo, not just a plugin. ([`09-claude-md-and-author-config`](09-claude-md-and-author-config.md), [`07-rules`](07-rules.md))
 
 1. Keep `skeleton/.claude/rules/plugin-dev.md`; tighten its `paths:` and house rules to the
    components you kept. These are author-only and never ship.
-2. Add any maintenance skills/agents you want *while developing* under `.claude/` — they are not
+2. Add any maintenance skills/agents you want _while developing_ under `.claude/` — they are not
    plugin components and won't load for users.
 3. Add `tests/` gates and a `.github/` workflow if you want CI enforcement. ([`10-validation-and-gates`](10-validation-and-gates.md))
 

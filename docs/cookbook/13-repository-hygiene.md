@@ -1,6 +1,6 @@
 # 13 · Repository hygiene
 
-> **Intent:** Set up the repository *around* the plugin so its history, configuration, and
+> **Intent:** Set up the repository _around_ the plugin so its history, configuration, and
 > presentation are as well-formed as its manifest — and so a new plugin inherits all of it by copying
 > `skeleton/`.
 > **Reads-with:** `10-validation-and-gates`, `11-distribution-and-versioning`, `09-claude-md-and-author-config`.
@@ -36,17 +36,17 @@ Every commit message MUST follow [Conventional Commits](https://www.conventional
 
 `type` is one of:
 
-| Type | Use for |
-| ---- | ------- |
-| `feat` | a new component or user-visible capability |
-| `fix` | a bug fix in a component or hook |
-| `docs` | README, CHANGELOG, or cookbook-style docs |
-| `refactor` | restructuring with no behavior change |
-| `test` | gates and test scripts (`10-validation-and-gates`) |
-| `ci` | workflow / automation changes |
-| `build` | tooling, dependencies, lint/format config |
-| `chore` | scaffolding and housekeeping |
-| `perf` | performance work |
+| Type       | Use for                                            |
+| ---------- | -------------------------------------------------- |
+| `feat`     | a new component or user-visible capability         |
+| `fix`      | a bug fix in a component or hook                   |
+| `docs`     | README, CHANGELOG, or cookbook-style docs          |
+| `refactor` | restructuring with no behavior change              |
+| `test`     | gates and test scripts (`10-validation-and-gates`) |
+| `ci`       | workflow / automation changes                      |
+| `build`    | tooling, dependencies, lint/format config          |
+| `chore`    | scaffolding and housekeeping                       |
+| `perf`     | performance work                                   |
 
 Conventional types are not decoration: they are the **semver signal** (`feat` → minor, `fix` →
 patch, a `!` suffix or `BREAKING CHANGE:` → major) and the raw material for a generated `CHANGELOG.md`
@@ -88,12 +88,12 @@ Plugins are mostly Markdown and JSON. Lint and format them with the same discipl
   "scripts": {
     "lint:md": "markdownlint-cli2 \"**/*.md\"",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
   },
   "devDependencies": {
     "markdownlint-cli2": "^0.x",
-    "prettier": "^3.x"
-  }
+    "prettier": "^3.x",
+  },
 }
 ```
 
@@ -143,7 +143,7 @@ release bumps `plugin.json` **and** adds a `CHANGELOG.md` entry in the same comm
 
 - **Copy `skeleton/`** into a fresh repo and run the `BOOTSTRAP.md` playbook — you start with hygiene
   already wired.
-- **Use the GitHub template.** If the cookbook repo is marked a *template repository*, "Use this
+- **Use the GitHub template.** If the cookbook repo is marked a _template repository_, "Use this
   template" gives a new repo with the same baseline; delete the cookbook `docs/` and keep `skeleton/`'s
   contents at the root.
 

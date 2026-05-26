@@ -36,22 +36,22 @@ several, point each entry's `source` at a subdir (`"./plugins/foo"`) or a separa
 
 `/plugin install … --scope <scope>` chooses where the plugin is enabled:
 
-| Scope | Settings file | Use |
-| ----- | ------------- | --- |
-| `user` (default) | `~/.claude/settings.json` | personal, all projects |
-| `project` | `.claude/settings.json` | team-shared via version control |
-| `local` | `.claude/settings.local.json` | project-specific, gitignored |
-| `managed` | managed settings | org-deployed, read-only |
+| Scope            | Settings file                 | Use                             |
+| ---------------- | ----------------------------- | ------------------------------- |
+| `user` (default) | `~/.claude/settings.json`     | personal, all projects          |
+| `project`        | `.claude/settings.json`       | team-shared via version control |
+| `local`          | `.claude/settings.local.json` | project-specific, gitignored    |
+| `managed`        | managed settings              | org-deployed, read-only         |
 
 ## Versioning
 
 The effective version is the first set of: `plugin.json` `version` → marketplace-entry `version` →
 git commit SHA → `unknown` (`02-manifest`). Two coherent strategies:
 
-| Strategy | How | Update behavior | For |
-| -------- | --- | --------------- | --- |
-| **Explicit** | set `version` in `plugin.json`; **bump every release** | users update only when you bump | published, stable releases |
-| **Commit-SHA** | omit `version` everywhere | users update on every new commit | internal, fast-iterating plugins |
+| Strategy       | How                                                    | Update behavior                  | For                              |
+| -------------- | ------------------------------------------------------ | -------------------------------- | -------------------------------- |
+| **Explicit**   | set `version` in `plugin.json`; **bump every release** | users update only when you bump  | published, stable releases       |
+| **Commit-SHA** | omit `version` everywhere                              | users update on every new commit | internal, fast-iterating plugins |
 
 > **MUST:** if you set an explicit `version`, bump it on every release — pushing commits alone does
 > nothing, because Claude Code sees the same version string and keeps the cached copy.
