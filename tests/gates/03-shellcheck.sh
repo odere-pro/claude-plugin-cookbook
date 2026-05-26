@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Hook scripts and the gate scripts themselves are shellcheck-clean at error level.
+# Shipped scripts (hooks, skill scripts) and the gate scripts themselves stay
+# clean under shellcheck at error level.
 set -euo pipefail
 # shellcheck source=tests/gates/lib.sh
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
@@ -12,7 +13,7 @@ fi
 
 scripts=()
 while IFS= read -r s; do scripts+=("$s"); done \
-  < <(find skeleton/hooks .claude/hooks tests/gates -name '*.sh' 2>/dev/null | sort)
+  < <(find skeleton/hooks .claude/hooks skills tests/gates -name '*.sh' 2>/dev/null | sort)
 if shellcheck -S error "${scripts[@]}"; then
   echo "shellcheck: ok"
 else

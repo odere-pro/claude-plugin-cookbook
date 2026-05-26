@@ -1,8 +1,11 @@
 # example-plugin
 
-<!-- REPLACE the your-handle/example-plugin slug below with your repo, then delete this comment. -->
+<!-- REPLACE the your-handle/example-plugin slug below with your repo, then delete this comment.
+     The CI badge is commented out: the starter ships no `.github/workflows/ci.yml`, so it would 404.
+     Add a workflow first (see the cookbook's `10-validation-and-gates`), then uncomment it. -->
 
-[![CI](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml)
+<!-- [![CI](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml) -->
+
 [![plugin validate --strict](https://img.shields.io/badge/claude%20plugin%20validate-strict-brightgreen)](https://docs.claude.com/en/docs/claude-code/plugins)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2)](https://docs.claude.com/en/docs/claude-code/plugins)
