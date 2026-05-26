@@ -1,0 +1,12 @@
+# Normalize line endings to LF on checkin
+* text=auto eol=lf
+
+# Shell scripts must stay LF regardless of platform
+*.sh text eol=lf
+
+# Treat lockfiles as generated (collapse diffs, mark as not-vendored)
+bun.lock linguist-generated=true
+
+# Keep documentation out of language stats so the repo reads as docs+shell
+docs/** linguist-documentation=true
+*.md linguist-detectable=false

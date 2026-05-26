@@ -1,0 +1,17 @@
+# Scratch / working area (never committed)
+/tmp/
+
+# Dependencies
+node_modules/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
