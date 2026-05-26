@@ -49,6 +49,37 @@ CI gates (JSON parses, frontmatter present, paths relative, no secrets, no netwo
 agent-operable surface intact across every change ([`10-validation-and-gates`](10-validation-and-gates.md)).
 The `skeleton/` is the floor: it starts green.
 
+## Operating this cookbook (three modes)
+
+This cookbook is itself agent-operable — you can use it three ways, in increasing order of "3.0-ness":
+
+1. **Copy (by hand).** Copy the starter and edit it. The most direct, no tooling required:
+
+   ```bash
+   cp -R skeleton/ ../my-plugin
+   ```
+
+   Then follow [`BOOTSTRAP.md`](BOOTSTRAP.md) and the component chapters.
+
+2. **Git / template (versioned).** Clone the repo, or use the GitHub **"Use this template"** button to
+   get a fresh repo with the skeleton's contents and hygiene baked in. This gives you version control,
+   shareable history, and the commit/versioning discipline from
+   [`13-repository-hygiene`](13-repository-hygiene.md) and
+   [`11-distribution-and-versioning`](11-distribution-and-versioning.md) from commit one.
+
+3. **Ship with Claude (Software 3.0).** Install the cookbook as a plugin and let an agent operate it:
+
+   ```text
+   /plugin marketplace add odere/claude-plugin-cookbook
+   /plugin install plugin-cookbook@plugin-cookbook
+   /plugin-cookbook:new-plugin my-plugin
+   ```
+
+   The `new-plugin` skill copies the validated skeleton, fills in the manifest, runs
+   `claude plugin validate --strict`, and initializes a clean history — the entire bootstrap driven by
+   natural language. That is this chapter's thesis applied to the cookbook itself: not just written by
+   an agent, but **operated** by one.
+
 ## The standard to hold
 
 > If the docs are silent on something an agent needs, treat that as a bug. The plugin is the

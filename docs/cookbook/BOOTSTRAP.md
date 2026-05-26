@@ -9,6 +9,9 @@
 > **playbook**. It is part of the cookbook, not part of your plugin. `skeleton/CLAUDE.md` is the
 > **template** this playbook installs as your new repo's project memory. Step 3 makes the swap.
 
+> **Shortcut:** if you have installed the cookbook as a plugin, `/plugin-cookbook:new-plugin <name>`
+> runs this whole playbook for you (see [`SOFTWARE-3-0`](SOFTWARE-3-0.md)).
+
 Work top to bottom. Each phase names the concrete file it touches and the chapter that explains it.
 
 ## Phase 0 — Decide the shape

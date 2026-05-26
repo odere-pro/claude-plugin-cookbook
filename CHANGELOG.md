@@ -6,6 +6,14 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Packaged the cookbook as the installable `plugin-cookbook` plugin, with a
+  `/plugin-cookbook:new-plugin` skill that scaffolds a validated starter from `skeleton/`.
+- Author-only `.claude/` config: path-scoped house rules (cookbook authoring + plugin dev) and a
+  format-on-edit hook.
+- `SOFTWARE-3-0` now documents the three usage modes (copy · git/template · ship-with-Claude).
+
 ## [0.1.0] - 2026-05-27
 
 ### Added
