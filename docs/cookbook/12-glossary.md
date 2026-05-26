@@ -71,3 +71,12 @@ state.
 **Shipped vs author-only** — *shipped*: recognized component dirs + manifest, loaded for users.
 *Author-only*: `CLAUDE.md`, `.claude/`, `tests/`, `.github/` — copied to the cache, never loaded
 (`09-claude-md-and-author-config`).
+
+**Conventional Commits** — the `<type>: <subject>` commit convention (`feat` / `fix` / `docs` / …)
+that doubles as the semver signal and changelog source (`13-repository-hygiene`).
+
+**CHANGELOG** — a `CHANGELOG.md` in Keep a Changelog format whose top released version MUST match the
+manifest version; gated against drift (`13-repository-hygiene`, `10-validation-and-gates`).
+
+**Badge** — a README status marker (CI, license, `validate --strict`); each MUST reflect a real
+signal, not a sticker (`13-repository-hygiene`).
