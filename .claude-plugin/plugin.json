@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "plugin-cookbook",
+  "version": "0.1.0",
+  "description": "Use when creating or scaffolding a new Claude Code plugin. Ships /plugin-cookbook:new-plugin, which copies a validated starter into a new directory and walks the bootstrap-to-ship workflow, plus the full cookbook reference.",
+  "author": {
+    "name": "odere",
+    "email": "odere.pro@gmail.com",
+    "url": "https://github.com/odere"
+  },
+  "homepage": "https://github.com/odere/claude-plugin-cookbook",
+  "repository": "https://github.com/odere/claude-plugin-cookbook",
+  "license": "MIT",
+  "keywords": ["plugin", "cookbook", "scaffold", "starter", "template", "claude-code"]
+}

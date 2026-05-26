@@ -1,0 +1,18 @@
+{
+  "name": "plugin-cookbook",
+  "owner": {
+    "name": "odere",
+    "email": "odere.pro@gmail.com"
+  },
+  "description": "The Claude Plugin Cookbook — a reference and scaffolder for building Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "plugin-cookbook",
+      "source": "./",
+      "description": "Scaffold and ship Claude Code plugins from a validated starter, with the full cookbook reference.",
+      "homepage": "https://github.com/odere/claude-plugin-cookbook",
+      "license": "MIT",
+      "keywords": ["plugin", "cookbook", "scaffold", "template"]
+    }
+  ]
+}
