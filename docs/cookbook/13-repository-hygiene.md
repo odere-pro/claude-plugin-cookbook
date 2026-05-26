@@ -109,8 +109,8 @@ bun run format:check   # prettier in check mode (CI); `bun run format` to fix
 - **`.prettierrc`** — set `"proseWrap": "preserve"` so Prettier normalizes formatting (table padding,
   list markers) **without** reflowing authored line breaks.
 
-Wire both into a gate (`06-markdown-lint` in `10-validation-and-gates`) and into CI so a malformed doc
-fails the build like a malformed manifest does.
+Wire both into a gate — see `10-validation-and-gates` — and into CI so a malformed doc fails the build
+like a malformed manifest does.
 
 ## Badges
 

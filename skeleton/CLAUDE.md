@@ -21,7 +21,7 @@ directory under here ships to users when the plugin is installed.
 
 - `.claude/` — this repo's own project config (house rules, dev skills/agents)
 - `CLAUDE.md` (this file) — dev-repo memory, not user context
-- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `tests/`, `.github/` — docs and CI
+- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE`, `tests/`, `.github/` — docs and CI
 - `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint*.jsonc`, `.prettierrc` — repo config
 
 ## Source layout
