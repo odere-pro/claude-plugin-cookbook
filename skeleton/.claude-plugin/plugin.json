@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "example-plugin",
+  "version": "0.1.0",
+  "description": "REPLACE ME. One or two sentences: what this plugin does and — most importantly — WHEN Claude or a user should reach for it. This text plus each component's description is what Claude routes against, so lead with concrete triggers, not adjectives.",
+  "author": {
+    "name": "Your Name",
+    "email": "you@example.com",
+    "url": "https://github.com/your-handle"
+  },
+  "homepage": "https://github.com/your-handle/example-plugin",
+  "repository": "https://github.com/your-handle/example-plugin",
+  "license": "MIT",
+  "keywords": ["example", "starter", "template"]
+}

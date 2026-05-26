@@ -1,0 +1,18 @@
+{
+  "name": "your-marketplace",
+  "owner": {
+    "name": "Your Name",
+    "email": "you@example.com"
+  },
+  "description": "REPLACE ME. What this marketplace offers — shown to users browsing plugins.",
+  "plugins": [
+    {
+      "name": "example-plugin",
+      "source": "./",
+      "description": "REPLACE ME. Short marketplace blurb for this plugin.",
+      "homepage": "https://github.com/your-handle/example-plugin",
+      "license": "MIT",
+      "keywords": ["example", "starter", "template"]
+    }
+  ]
+}
