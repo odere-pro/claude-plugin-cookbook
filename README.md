@@ -36,7 +36,7 @@ Follow the [bootstrap playbook](docs/cookbook/BOOTSTRAP.md) against a copy of [`
 The cookbook is itself an installable plugin. Install it and let Claude scaffold for you:
 
 ```text
-/plugin marketplace add odere/claude-plugin-cookbook
+/plugin marketplace add odere-pro/claude-plugin-cookbook
 /plugin install plugin-cookbook@plugin-cookbook
 /plugin-cookbook:new-plugin my-plugin
 ```
