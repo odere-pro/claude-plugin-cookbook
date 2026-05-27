@@ -21,8 +21,10 @@ directory under here ships to users when the plugin is installed.
 
 - `.claude/` — this repo's own project config (house rules, dev skills/agents)
 - `CLAUDE.md` (this file) — dev-repo memory, not user context
-- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE` — docs (and `tests/`, `.github/` once you
-  add CI; the starter ships neither)
+- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `LICENSE` — docs
+- `SECURITY.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `docs/` — governance docs (fill the `REPLACE-ME`s)
+- `.github/` — CI/Scorecard/CodeQL/release workflows, Dependabot, CODEOWNERS (Scorecard & CodeQL are
+  dormant until the repo is public — see the cookbook's `14-supply-chain-and-governance`)
 - `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint*.jsonc`, `.prettierrc` — repo config
 
 ## Source layout

@@ -12,3 +12,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Release-workflow artifacts
+*.tar.gz
+results.sarif
+release-notes.md
