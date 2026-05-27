@@ -49,7 +49,7 @@ runs `claude plugin validate --strict`, and initializes a clean git history. See
 
 | Path                                                       | What it is                                                                      |
 | ---------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`docs/cookbook/`](docs/cookbook/README.md)                | the 14-chapter reference (one attribute per chapter) + thesis + playbook        |
+| [`docs/cookbook/`](docs/cookbook/README.md)                | the 15-chapter reference (one attribute per chapter) + thesis + playbook        |
 | [`docs/cookbook/BOOTSTRAP.md`](docs/cookbook/BOOTSTRAP.md) | an agent-followable playbook that turns a repo into a plugin                    |
 | [`skeleton/`](skeleton/)                                   | a minimal, valid, loadable plugin — copy it, don't start from scratch           |
 | [`skills/new-plugin/`](skills/new-plugin/SKILL.md)         | the `/plugin-cookbook:new-plugin` skill that scaffolds a new plugin             |

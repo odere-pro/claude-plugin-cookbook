@@ -2,7 +2,7 @@
 
 > **Intent:** Give a competent engineer everything needed to create a complete, well-formed Claude
 > Code plugin — every attribute, from manifest to MCP — without reading another plugin's source.
-> **Reads-with:** the whole package (`00`–`13`), the `skeleton/`, and the `BOOTSTRAP.md` playbook.
+> **Reads-with:** the whole package (`00`–`14`), the `skeleton/`, and the `BOOTSTRAP.md` playbook.
 
 This is a **template for the initial creation of a Claude Code plugin**. It pairs a numbered
 reference (each chapter covers one attribute) with a copyable `skeleton/` that already passes
@@ -23,13 +23,13 @@ the first time and understand _why_ each rule exists.
 
 ## How to read it
 
-| Mode                     | Path                                                                                                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Bootstrap a repo now** | the [`BOOTSTRAP.md`](BOOTSTRAP.md) playbook → copy [`skeleton/`](../../skeleton/)                                                                             |
-| **Impatient**            | [`00`](00-overview.md) → `skeleton/` → [`02`](02-manifest.md) → [`10`](10-validation-and-gates.md)                                                            |
-| **Thorough**             | sequential [`00`](00-overview.md) → [`13`](13-repository-hygiene.md)                                                                                          |
-| **By component**         | [`03`](03-commands.md)–[`08`](08-mcp.md) as needed                                                                                                            |
-| **Quality / shipping**   | [`10`](10-validation-and-gates.md) → [`09`](09-claude-md-and-author-config.md) → [`11`](11-distribution-and-versioning.md) → [`13`](13-repository-hygiene.md) |
+| Mode                     | Path                                                                                                                                                                                                      |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Bootstrap a repo now** | the [`BOOTSTRAP.md`](BOOTSTRAP.md) playbook → copy [`skeleton/`](../../skeleton/)                                                                                                                         |
+| **Impatient**            | [`00`](00-overview.md) → `skeleton/` → [`02`](02-manifest.md) → [`10`](10-validation-and-gates.md)                                                                                                        |
+| **Thorough**             | sequential [`00`](00-overview.md) → [`14`](14-supply-chain-and-governance.md)                                                                                                                             |
+| **By component**         | [`03`](03-commands.md)–[`08`](08-mcp.md) as needed                                                                                                                                                        |
+| **Quality / shipping**   | [`10`](10-validation-and-gates.md) → [`09`](09-claude-md-and-author-config.md) → [`11`](11-distribution-and-versioning.md) → [`13`](13-repository-hygiene.md) → [`14`](14-supply-chain-and-governance.md) |
 
 ## Conventions
 
@@ -57,6 +57,7 @@ the first time and understand _why_ each rule exists.
 | 11  | [Distribution and versioning](11-distribution-and-versioning.md) | marketplace, scopes, semver, updates                                        |
 | 12  | [Glossary](12-glossary.md)                                       | the canonical vocabulary                                                    |
 | 13  | [Repository hygiene](13-repository-hygiene.md)                   | init, conventional commits, clean history, repo config, lint/format, badges |
+| 14  | [Supply-chain and governance](14-supply-chain-and-governance.md) | OpenSSF, provenance, governance docs, Dependabot, fragment changelog        |
 
 ## Also in this package
 

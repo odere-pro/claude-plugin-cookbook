@@ -8,12 +8,13 @@ building Claude Code plugins **and** the installable `plugin-cookbook` plugin it
 
 | Path                         | Role                                                                                                |
 | ---------------------------- | --------------------------------------------------------------------------------------------------- |
-| `docs/cookbook/`             | the 14-chapter reference (`00`–`13`), the `SOFTWARE-3-0.md` thesis, and the `BOOTSTRAP.md` playbook |
+| `docs/cookbook/`             | the 15-chapter reference (`00`–`14`), the `SOFTWARE-3-0.md` thesis, and the `BOOTSTRAP.md` playbook |
 | `.claude-plugin/`, `skills/` | the root **plugin-cookbook** plugin: manifests + the `new-plugin` scaffolding skill                 |
 | `skeleton/`                  | the copyable starter plugin (its own author-only `CLAUDE.md` becomes a new plugin's project memory) |
 | `.claude/`                   | author-only config: path-scoped house rules + a format-on-edit hook (never shipped)                 |
-| `tests/gates/`               | standalone CI checks; `run-all.sh` is the runner                                                    |
-| `.github/workflows/ci.yml`   | runs the gates on push / PR via Bun                                                                 |
+| `changelog/`, `scripts/`     | per-PR changelog fragments + `changelog-aggregate.sh` that promotes them at release time            |
+| `tests/gates/`               | standalone CI checks (`01`–`12`); `run-all.sh` discovers them by filename                           |
+| `.github/`                   | CI/scorecard/codeql/release workflows, Dependabot, governance docs, issue/PR templates              |
 
 Two `CLAUDE.md` files exist and serve different repos: **this** one (dev memory for the cookbook) and
 `skeleton/CLAUDE.md` (a template installed as a new plugin's memory). `docs/cookbook/BOOTSTRAP.md` is

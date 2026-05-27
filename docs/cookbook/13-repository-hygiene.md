@@ -3,7 +3,7 @@
 > **Intent:** Set up the repository _around_ the plugin so its history, configuration, and
 > presentation are as well-formed as its manifest — and so a new plugin inherits all of it by copying
 > `skeleton/`.
-> **Reads-with:** `10-validation-and-gates`, `11-distribution-and-versioning`, `09-claude-md-and-author-config`.
+> **Reads-with:** `10-validation-and-gates`, `11-distribution-and-versioning`, `09-claude-md-and-author-config`, `14-supply-chain-and-governance`.
 
 The plugin contract (chapters `00`–`12`) governs what loads into a session. This chapter governs the
 repository that holds it: how you initialize it, commit to it, configure it, and present it. None of
@@ -124,8 +124,11 @@ A `README.md` SHOULD open with a small, honest set of badges — each one a live
 ```
 
 The CI badge is dynamic (it tracks the workflow); the others are static [shields.io](https://shields.io)
-badges. A version badge MAY track a release tag once you publish. Keep them truthful: a green
-`validate --strict` badge MUST correspond to a real gate (`10-validation-and-gates`).
+badges. A version or status badge MAY track a release tag once you publish. Keep them truthful: a green
+`validate --strict` badge MUST correspond to a real gate (`10-validation-and-gates`). Supply-chain
+badges — an OpenSSF Scorecard score, an OpenSSF Best Practices badge — are worth adding once a plugin
+has users; they come with their own automation and registration, covered in
+`14-supply-chain-and-governance`.
 
 ## CHANGELOG
 
@@ -139,7 +142,9 @@ release bumps `plugin.json` **and** adds a `CHANGELOG.md` entry in the same comm
 
 `skeleton/` already ships every file in this chapter — `.editorconfig`, `.gitattributes`,
 `.gitignore`, `.markdownlint.jsonc`, `.prettierrc`, a badged `README.md`, a `CHANGELOG.md` stub, and a
-`CONTRIBUTING.md` stating the commit conventions. Two ways to inherit it:
+`CONTRIBUTING.md` stating the commit conventions — plus the supply-chain and governance layer
+(`SECURITY.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `.github/CODEOWNERS`, the CI/Scorecard/CodeQL/release
+workflows, and Dependabot) covered in `14-supply-chain-and-governance`. Two ways to inherit it:
 
 - **Copy `skeleton/`** into a fresh repo and run the `BOOTSTRAP.md` playbook — you start with hygiene
   already wired.
