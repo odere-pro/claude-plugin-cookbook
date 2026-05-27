@@ -10,7 +10,7 @@
       "name": "plugin-cookbook",
       "source": "./",
       "description": "Scaffold and ship Claude Code plugins from a validated starter, with the full cookbook reference.",
-      "homepage": "https://github.com/odere/claude-plugin-cookbook",
+      "homepage": "https://github.com/odere-pro/claude-plugin-cookbook",
       "license": "MIT",
       "keywords": ["plugin", "cookbook", "scaffold", "template"]
     }

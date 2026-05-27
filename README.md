@@ -1,9 +1,14 @@
 # Claude Plugin Cookbook
 
-[![CI](https://github.com/odere/claude-plugin-cookbook/actions/workflows/ci.yml/badge.svg)](https://github.com/odere/claude-plugin-cookbook/actions/workflows/ci.yml)
+[![CI](https://github.com/odere-pro/claude-plugin-cookbook/actions/workflows/ci.yml/badge.svg)](https://github.com/odere-pro/claude-plugin-cookbook/actions/workflows/ci.yml)
 [![plugin validate --strict](https://img.shields.io/badge/claude%20plugin%20validate-strict-brightgreen)](docs/cookbook/10-validation-and-gates.md)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/odere-pro/claude-plugin-cookbook/badge)](https://scorecard.dev/viewer/?uri=github.com/odere-pro/claude-plugin-cookbook)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2)](https://docs.claude.com/en/docs/claude-code/plugins)
+
+<!-- Add once the project is registered at https://www.bestpractices.dev (see docs/cookbook/14-supply-chain-and-governance.md):
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/REPLACE-ME/badge)](https://www.bestpractices.dev/projects/REPLACE-ME)
+-->
 
 A reference cookbook **and** a working starter for building [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)
 plugins. The cookbook documents the whole plugin contract — manifest, skills, commands, subagents,
