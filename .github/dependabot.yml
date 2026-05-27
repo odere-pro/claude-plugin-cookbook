@@ -1,0 +1,20 @@
+version: 2
+
+# Two ecosystems. The GitHub Actions used in ci/release/scorecard/codeql are pinned by commit
+# SHA; Dependabot bumps the pin and the trailing `# vX.Y.Z` comment together. The repo also has a
+# real package.json + bun.lock (markdownlint-cli2, prettier) for doc linting, so Dependabot watches
+# npm too. See docs/cookbook/14-supply-chain-and-governance.md.
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "build"
