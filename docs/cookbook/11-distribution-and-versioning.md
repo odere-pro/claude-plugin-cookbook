@@ -2,7 +2,7 @@
 
 > **Intent:** Take the plugin from "loads on my machine" to "installed by others," and version it so
 > updates reach users predictably.
-> **Reads-with:** `02-manifest`, `10-validation-and-gates`.
+> **Reads-with:** `02-manifest`, `10-validation-and-gates`, `14-supply-chain-and-governance`.
 
 ## Local development loop
 
@@ -58,7 +58,10 @@ git commit SHA → `unknown` (`02-manifest`). Two coherent strategies:
 
 Follow semver (`MAJOR.MINOR.PATCH`), keep a `CHANGELOG.md`, and gate the changelog against the
 manifest version (`10-validation-and-gates`). `claude plugin tag` creates a release git tag from
-inside the plugin directory.
+inside the plugin directory. You can also automate the cut: a tag-triggered release workflow that
+verifies the tag equals `plugin.json`, re-runs the gates, and publishes the GitHub Release with build
+provenance — the procedure is `docs/RELEASING.md` and the machinery is in `14-supply-chain-and-governance`.
+That chapter also covers the fragment-based `CHANGELOG.md` workflow for repos with concurrent PRs.
 
 ## Update mechanics
 

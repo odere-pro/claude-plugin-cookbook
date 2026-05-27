@@ -70,7 +70,7 @@ This cookbook is itself agent-operable — you can use it three ways, in increas
 3. **Ship with Claude (Software 3.0).** Install the cookbook as a plugin and let an agent operate it:
 
    ```text
-   /plugin marketplace add odere/claude-plugin-cookbook
+   /plugin marketplace add odere-pro/claude-plugin-cookbook
    /plugin install plugin-cookbook@plugin-cookbook
    /plugin-cookbook:new-plugin my-plugin
    ```

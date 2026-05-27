@@ -1,14 +1,19 @@
 # example-plugin
 
-<!-- REPLACE the your-handle/example-plugin slug below with your repo, then delete this comment.
-     The CI badge is commented out: the starter ships no `.github/workflows/ci.yml`, so it would 404.
-     Add a workflow first (see the cookbook's `10-validation-and-gates`), then uncomment it. -->
+<!-- REPLACE every your-handle/example-plugin slug below with your repo, then delete this comment.
+     The CI badge tracks the shipped `.github/workflows/ci.yml`. The OpenSSF badges are commented out
+     because they need a PUBLIC repo (Scorecard) and a registered project id (Best Practices) —
+     uncomment them per the cookbook's `14-supply-chain-and-governance`. -->
 
-<!-- [![CI](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml) -->
-
+[![CI](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/your-handle/example-plugin/actions/workflows/ci.yml)
 [![plugin validate --strict](https://img.shields.io/badge/claude%20plugin%20validate-strict-brightgreen)](https://docs.claude.com/en/docs/claude-code/plugins)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2)](https://docs.claude.com/en/docs/claude-code/plugins)
+
+<!-- Uncomment once the repo is public / the project is registered (see `14-supply-chain-and-governance`):
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/your-handle/example-plugin/badge)](https://scorecard.dev/viewer/?uri=github.com/your-handle/example-plugin)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/REPLACE-ME/badge)](https://www.bestpractices.dev/projects/REPLACE-ME)
+-->
 
 > REPLACE ME. One-line pitch: what this plugin gives a Claude Code user.
 

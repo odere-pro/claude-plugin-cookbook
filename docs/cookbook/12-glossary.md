@@ -81,3 +81,29 @@ manifest version; gated against drift (`13-repository-hygiene`, `10-validation-a
 
 **Badge** — a README status marker (CI, license, `validate --strict`); each MUST reflect a real
 signal, not a sticker (`13-repository-hygiene`).
+
+**Changelog fragment** — a one-bullet `changelog/<NN>-<slug>.md` file a PR adds instead of editing
+`CHANGELOG.md` directly, so concurrent PRs never collide; aggregated at release time
+(`14-supply-chain-and-governance`).
+
+**CODEOWNERS** — `.github/CODEOWNERS`; maps paths to default reviewers so branch-protected PRs require
+code-owner review (`14-supply-chain-and-governance`).
+
+**Dependabot** — `.github/dependabot.yml`; opens automated version-bump PRs for watched ecosystems
+(GitHub Actions, npm) and refreshes SHA-pinned action versions (`14-supply-chain-and-governance`).
+
+**Pinned action SHA** — a GitHub Action referenced by full commit SHA (`uses: x/y@<sha> # vN`) rather
+than a movable tag, so the supply chain is immutable (`14-supply-chain-and-governance`).
+
+**OpenSSF Scorecard** — an automated supply-chain score (branch protection, pinned deps, token
+permissions, SAST); published from `scorecard.yml`, needs no registration
+(`14-supply-chain-and-governance`).
+
+**OpenSSF Best Practices** — a self-assessment badge against an open criteria checklist; requires
+registering the project for a per-repo numeric id (`14-supply-chain-and-governance`).
+
+**CodeQL** — GitHub's SAST engine; for a content-only plugin it analyzes the `actions` language,
+inspecting workflow YAML for security issues (`14-supply-chain-and-governance`).
+
+**SLSA provenance** — a signed, verifiable attestation of which workflow built which release artifact,
+attached to the GitHub Release (`14-supply-chain-and-governance`).

@@ -48,15 +48,23 @@ These mirror the calibration plugin's gate suite — adopt the ones that fit:
 | Agents declare `tools` explicitly                                       | least privilege; no accidental tool inheritance |
 | Rules carry `paths:`                                                    | a scoped rule, not an always-on one             |
 | Hooks contain no `curl`/`wget`/remote `npx`                             | no network on the hot path                      |
+| No token-shaped secrets in tracked files                                | a leaked credential                             |
 | `CHANGELOG.md` has the current `plugin.json` version                    | version/changelog drift                         |
+| A changelog fragment present per non-doc PR, uniquely numbered          | concurrent PRs never collide on the changelog   |
+
+The last three are realized in this repo as `tests/gates/07-secret-scan.sh`,
+`tests/gates/09-changelog-version.sh`, and `tests/gates/10-changelog-fragment-present.sh` /
+`tests/gates/11-changelog-fragment-unique.sh`. The fragment gates and the supply-chain checks they pair
+with (Scorecard, CodeQL, release provenance) are covered in `14-supply-chain-and-governance`.
 
 ## A CI gate pattern
 
 Keep gates as small, standalone scripts under `tests/` with a `run-all.sh` runner, each printing
-`ok` or `FAIL` and exiting non-zero on failure. The calibration plugin's `tests/gates/` is the worked
-example: numbered scripts (`01-json-parses.sh`, `03-skill-frontmatter.sh`, `05-agent-frontmatter.sh`,
-`06-rules-have-paths.sh`, `09-no-absolute-paths.sh`, `12-hooks-no-remote.sh`, …) sharing a `lib.sh`
-that extracts frontmatter and locates the repo root. A representative gate:
+`ok` or `FAIL` and exiting non-zero on failure. This repo's own `tests/gates/` is the worked example:
+numbered scripts (`tests/gates/01-json-parses.sh`, `tests/gates/05-doc-links.sh`,
+`tests/gates/07-secret-scan.sh`, `tests/gates/10-changelog-fragment-present.sh`, …) sharing a `lib.sh`
+that locates the repo root; `run-all.sh` discovers them by filename, so a new gate is just a new
+`NN-*.sh`. A representative gate:
 
 ```bash
 #!/usr/bin/env bash

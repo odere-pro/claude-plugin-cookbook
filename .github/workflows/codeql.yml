@@ -1,0 +1,37 @@
+name: codeql
+
+# Static analysis (SAST) via CodeQL. This repo is Markdown + Bash + JSON with no compiled
+# language, so we analyze the `actions` language — CodeQL inspects the GitHub Actions workflows
+# themselves for security issues. Results upload to code-scanning and feed the OpenSSF Scorecard
+# SAST check. Teaches docs/cookbook/14-supply-chain-and-governance.md.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "27 4 * * 1" # weekly, Monday 04:27 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: analyze (actions)
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write # upload results to code-scanning
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@7211b7c8077ea37d8641b6271f6a365a22a5fbfa # v4.36.0
+        with:
+          languages: actions
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@7211b7c8077ea37d8641b6271f6a365a22a5fbfa # v4.36.0
