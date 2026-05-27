@@ -1,0 +1,1 @@
+- Supply-chain & governance hardening: OpenSSF Scorecard, CodeQL, and release workflows; Dependabot; security and governance docs; an expanded gate suite; and a fragment-based changelog — all pre-wired into the skeleton so new plugins inherit them.
