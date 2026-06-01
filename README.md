@@ -101,4 +101,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions and the PR checkli
 
 ---
 
-[Landing page](https://odere-pro.github.io/claude-plugin-cookbook/) · [Cookbook](docs/cookbook/) · [MIT License](LICENSE)
+<p align="center">
+  <a href="https://odere-pro.github.io/claude-plugin-cookbook/">Landing page</a>
+  &nbsp;·&nbsp;
+  <a href="LICENSE">MIT</a>
+</p>
