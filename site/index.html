@@ -766,6 +766,19 @@
         color: var(--color-text);
       }
 
+      footer .meta a {
+        display: inline;
+        min-height: 0;
+        padding-inline: 0;
+        color: var(--color-muted);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      footer .meta a:hover {
+        color: var(--color-text);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -1298,8 +1311,12 @@ open docs/cookbook/README.md   <span class="cmt"># or read it on GitHub</span></
     </main>
 
     <footer class="wrap">
-      <span>MIT licensed · plugin-cookbook v0.1.0</span>
+      <span class="meta">
+        <a href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/LICENSE">MIT</a>
+        licensed · plugin-cookbook v0.1.0
+      </span>
       <span class="spacer"></span>
+      <a href="https://odere-pro.github.io/claude-plugin-cookbook/">Home</a>
       <a href="https://github.com/odere-pro/claude-plugin-cookbook">GitHub</a>
       <a href="https://github.com/odere-pro/claude-plugin-cookbook#readme">Docs</a>
       <a href="https://github.com/odere-pro/claude-plugin-cookbook/issues">Issues</a>

@@ -1,0 +1,1 @@
+- Landing site footer: link "MIT" to the repository `LICENSE` and add a "Home" link to the published landing page, with an inline-link style so the in-text license link keeps the body type instead of inheriting the nav tap-target styling.
