@@ -1,0 +1,30 @@
+# Claude Plugin Cookbook
+
+> A reference and scaffolder for building Claude Code plugins. The repository is both a
+> 15-chapter reference cookbook documenting the whole plugin contract AND the installable
+> `plugin-cookbook` plugin itself — whose `/plugin-cookbook:new-plugin` skill scaffolds a new
+> plugin from a validated starter skeleton. Everything stays
+> `claude plugin validate --strict`-clean.
+
+## What it is
+
+- Reference: `docs/cookbook/` — 15 chapters (00–14), one plugin attribute per chapter, plus the
+  BOOTSTRAP playbook and the SOFTWARE-3-0 thesis.
+- Starter: `skeleton/` — a minimal, valid, loadable plugin that already passes
+  `claude plugin validate --strict`.
+- Scaffolder: the `/plugin-cookbook:new-plugin` skill copies the skeleton into a new directory,
+  fills the manifest, validates strict, and initializes a clean git history.
+
+## Install
+
+- /plugin marketplace add odere-pro/claude-plugin-cookbook
+- /plugin install plugin-cookbook@plugin-cookbook
+- /plugin-cookbook:new-plugin my-plugin
+
+## Key links
+
+- Repository: https://github.com/odere-pro/claude-plugin-cookbook
+- Cookbook index: https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/README.md
+- Bootstrap playbook: https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/BOOTSTRAP.md
+- Starter skeleton: https://github.com/odere-pro/claude-plugin-cookbook/tree/main/skeleton
+- License: MIT

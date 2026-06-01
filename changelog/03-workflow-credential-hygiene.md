@@ -1,0 +1,1 @@
+- Workflow hardening: set `persist-credentials: false` on the `actions/checkout` steps in `ci`, `codeql`, and `release` so credential hygiene is uniform across every workflow (pages and scorecard already had it); README footer gains a link to the published GitHub Pages landing page.

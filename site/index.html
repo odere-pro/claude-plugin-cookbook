@@ -1,0 +1,1351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Claude Plugin Cookbook — build, validate &amp; ship Claude Code plugins</title>
+    <meta
+      name="description"
+      content="The Claude Plugin Cookbook is a reference and scaffolder for building Claude Code plugins. A 15-chapter reference documents the whole plugin contract — plugin.json manifest, skills, commands, subagents, hooks, rules, MCP, validation, distribution, and repository hygiene — paired with a validated starter skeleton and the /plugin-cookbook:new-plugin skill that copies it into a new plugin and walks the bootstrap-to-ship workflow. Everything stays claude plugin validate --strict-clean."
+    />
+    <link rel="canonical" href="https://odere-pro.github.io/claude-plugin-cookbook/" />
+    <meta name="theme-color" content="#1c1714" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="application-name" content="claude-plugin-cookbook" />
+    <meta name="author" content="odere" />
+    <meta
+      name="keywords"
+      content="claude code plugin, plugin cookbook, build claude code plugin, scaffold claude plugin, plugin.json manifest, SKILL.md, claude code skill, claude code command, subagents, hooks, mcp, plugin marketplace, plugin validate, claude code template, agent skills, plugin starter"
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+
+    <!-- Restrict origins; the only third party is the pinned, SRI-verified mermaid bundle. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'"
+    />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://odere-pro.github.io/claude-plugin-cookbook/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://odere-pro.github.io/claude-plugin-cookbook/"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Claude Plugin Cookbook" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:title"
+      content="Claude Plugin Cookbook — build, validate & ship Claude Code plugins"
+    />
+    <meta
+      property="og:description"
+      content="A reference and scaffolder for building Claude Code plugins: a 15-chapter reference of the whole plugin contract, a validated starter skeleton, and the /plugin-cookbook:new-plugin skill that scaffolds a new plugin and walks the bootstrap-to-ship workflow."
+    />
+    <meta property="og:url" content="https://odere-pro.github.io/claude-plugin-cookbook/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Claude Plugin Cookbook — build, validate & ship Claude Code plugins"
+    />
+    <meta
+      name="twitter:description"
+      content="Document the whole Claude Code plugin contract, copy a validated skeleton, and scaffold a new plugin with /plugin-cookbook:new-plugin — strict-validated, bootstrap to ship."
+    />
+
+    <!-- Structured data: describes the plugin and qualifies the FAQ and
+         install steps for rich results. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://odere-pro.github.io/claude-plugin-cookbook/#website",
+            "url": "https://odere-pro.github.io/claude-plugin-cookbook/",
+            "name": "Claude Plugin Cookbook",
+            "description": "A reference and scaffolder for building Claude Code plugins — document the whole plugin contract, copy a validated skeleton, and ship.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://github.com/odere-pro#organization" }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://github.com/odere-pro#organization",
+            "name": "odere",
+            "url": "https://github.com/odere-pro/claude-plugin-cookbook",
+            "sameAs": ["https://github.com/odere-pro/claude-plugin-cookbook"]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://odere-pro.github.io/claude-plugin-cookbook/#app",
+            "name": "plugin-cookbook",
+            "applicationCategory": "DeveloperApplication",
+            "applicationSubCategory": "Claude Code Plugin",
+            "operatingSystem": "macOS, Linux, Windows (WSL)",
+            "description": "The Claude Plugin Cookbook is both a reference and a working installable plugin for Claude Code. The 15-chapter reference documents the whole plugin contract — manifest, skills, commands, subagents, hooks, rules, MCP, validation, distribution, supply-chain governance, and repository hygiene — and ships a validated starter skeleton plus the /plugin-cookbook:new-plugin skill that copies the skeleton into a new plugin, fills the manifest, runs claude plugin validate --strict, and initializes a clean git history.",
+            "url": "https://odere-pro.github.io/claude-plugin-cookbook/",
+            "softwareHelp": "https://github.com/odere-pro/claude-plugin-cookbook#readme",
+            "softwareVersion": "0.1.0",
+            "license": "https://opensource.org/licenses/MIT",
+            "keywords": "claude code plugin, plugin cookbook, plugin.json, SKILL.md, subagents, hooks, mcp, plugin marketplace, scaffold, validate, template",
+            "featureList": [
+              "A 15-chapter reference covering the entire Claude Code plugin contract — one attribute per chapter",
+              "A minimal starter skeleton that already passes claude plugin validate --strict — copy it, don't start from scratch",
+              "An agent-followable BOOTSTRAP playbook that turns any repo into a well-formed plugin",
+              "The /plugin-cookbook:new-plugin skill scaffolds a new plugin and walks the bootstrap-to-ship workflow",
+              "Standalone CI gates (run-all.sh) that enforce the well-formed-plugin invariants",
+              "Pre-wired repository hygiene and supply-chain governance — Conventional Commits, changelog fragments, OpenSSF Scorecard"
+            ],
+            "isAccessibleForFree": true,
+            "author": { "@id": "https://github.com/odere-pro#organization" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          },
+          {
+            "@type": "HowTo",
+            "@id": "https://odere-pro.github.io/claude-plugin-cookbook/#install",
+            "name": "Scaffold a Claude Code plugin with the plugin-cookbook",
+            "description": "Add the marketplace, install the plugin-cookbook plugin, and scaffold a new validated plugin in three steps.",
+            "totalTime": "PT3M",
+            "tool": [{ "@type": "HowToTool", "name": "Claude Code" }],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Add the marketplace",
+                "text": "In a Claude Code session run: /plugin marketplace add odere-pro/claude-plugin-cookbook"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Install the plugin",
+                "text": "Run: /plugin install plugin-cookbook@plugin-cookbook"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Scaffold a new plugin",
+                "text": "Run: /plugin-cookbook:new-plugin my-plugin — it copies the validated skeleton into ./my-plugin, fills the manifest, runs claude plugin validate --strict, and initializes a clean git history."
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://odere-pro.github.io/claude-plugin-cookbook/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://odere-pro.github.io/claude-plugin-cookbook/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "What's inside",
+                "item": "https://odere-pro.github.io/claude-plugin-cookbook/#inside"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How it works",
+                "item": "https://odere-pro.github.io/claude-plugin-cookbook/#how"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Chapters",
+                "item": "https://odere-pro.github.io/claude-plugin-cookbook/#chapters"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Install",
+                "item": "https://odere-pro.github.io/claude-plugin-cookbook/#install"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://odere-pro.github.io/claude-plugin-cookbook/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the Claude Plugin Cookbook?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "It is both a reference and a working installable plugin for Claude Code. The cookbook is a 15-chapter reference that documents the whole plugin contract — manifest, skills, commands, subagents, hooks, rules, MCP, validation, distribution, and repository hygiene — and it ships a validated starter skeleton plus the /plugin-cookbook:new-plugin skill that scaffolds a new plugin from that skeleton."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need to read the whole cookbook before building a plugin?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Start with the one mental model in the overview, then either copy skeleton/ and follow the BOOTSTRAP playbook, or install the plugin and run /plugin-cookbook:new-plugin. The 15 chapters are a reference you cite one attribute at a time — manifest, skills, commands, subagents, hooks, MCP — not a linear book you must finish first."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does /plugin-cookbook:new-plugin change my existing repository?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. It copies the validated skeleton into a new directory you name (for example ./my-plugin), fills in that plugin's manifest, runs claude plugin validate --strict, and initializes a clean git history inside the new directory. It does not modify the repository you invoke it from."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is a plugin validated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Both the cookbook's root plugin and the skeleton stay claude plugin validate --strict-clean. On top of the built-in validator, the repo ships standalone CI gates (tests/gates/run-all.sh) that check JSON parses, strict plugin validation, shell linting, no absolute machine paths, valid doc links, markdown style, secret scanning, local-only hooks, and changelog/glossary consistency."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use the cookbook as a GitHub template instead of installing it?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The repository is a GitHub template — click \"Use this template\" to get a new repo with the same baseline, then keep the contents of skeleton/ at the root and delete docs/. The skeleton already ships a badged README, a CHANGELOG.md, a CONTRIBUTING.md, and the lint/format/editor config."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Will the plugin cost context when I am not using it?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The new-plugin skill is side-effecting, so it is disable-model-invocation — it costs no standing context and only runs when you invoke it by name. The cookbook reference is documentation in the repo, not loaded into every session."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <style>
+      :root {
+        --color-bg: oklch(22% 0.012 50);
+        --color-bg-raised: oklch(27% 0.016 52);
+        --color-surface: oklch(31% 0.02 54);
+        --color-text: oklch(92% 0.012 70);
+        --color-muted: oklch(76% 0.022 62);
+        --color-accent: oklch(70% 0.13 45);
+        --color-accent-soft: oklch(70% 0.13 45 / 0.16);
+        --color-accent-line: oklch(70% 0.13 45 / 0.4);
+        --color-line: oklch(40% 0.02 55);
+
+        --text-hero: clamp(2.6rem, 1.4rem + 5vw, 5.5rem);
+        --text-lead: clamp(1.1rem, 0.96rem + 0.6vw, 1.4rem);
+        --text-h2: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
+        --space-section: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+
+        --radius: 14px;
+        --radius-sm: 9px;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+        --font-sans:
+          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --font-mono:
+          ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(120% 80% at 75% -10%, var(--color-accent-soft), transparent 60%),
+          var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-sans);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      .wrap {
+        width: min(1100px, 92vw);
+        margin-inline: auto;
+      }
+
+      .vh {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+        z-index: 50;
+        transform: translateY(-160%);
+        background: var(--color-accent);
+        color: oklch(20% 0.02 50);
+        padding: 0.6rem 1rem;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform var(--ease) 200ms;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      /* Header / nav */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: oklch(22% 0.012 50 / 0.82);
+        backdrop-filter: saturate(140%) blur(10px);
+        border-bottom: 1px solid var(--color-line);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.4rem 1.2rem;
+        padding-block: 0.9rem;
+      }
+
+      .brand {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: 1.15rem;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+
+      .brand span {
+        color: var(--color-accent);
+      }
+
+      nav .spacer {
+        flex: 1;
+      }
+
+      nav a:not(.brand) {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding-inline: 0.35rem;
+        text-decoration: none;
+        color: var(--color-muted);
+        font-size: 0.95rem;
+        transition: color var(--ease) 200ms;
+      }
+
+      nav a:not(.brand):hover,
+      nav a:not(.brand):focus-visible {
+        color: var(--color-text);
+      }
+
+      /* Hero */
+      .hero {
+        padding-block: var(--space-section);
+      }
+
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin: 0 0 1.2rem;
+      }
+
+      h1 {
+        font-size: var(--text-hero);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        margin: 0 0 1.4rem;
+        max-width: 20ch;
+      }
+
+      .lead {
+        font-size: var(--text-lead);
+        color: var(--color-muted);
+        max-width: 60ch;
+        margin: 0 0 1.8rem;
+      }
+
+      .pills {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin: 0 0 2rem;
+        padding: 0;
+      }
+
+      .pills li {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--color-text);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        padding: 0.35rem 0.85rem;
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.4rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        transition:
+          transform var(--ease) 200ms,
+          background var(--ease) 200ms;
+      }
+
+      .btn-primary {
+        background: var(--color-accent);
+        color: oklch(20% 0.02 50);
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .btn-ghost {
+        border: 1px solid var(--color-line);
+        color: var(--color-text);
+      }
+
+      .btn-ghost:hover,
+      .btn-ghost:focus-visible {
+        background: var(--color-surface);
+        transform: translateY(-2px);
+      }
+
+      /* Shared section chrome */
+      section.band {
+        padding-block: var(--space-section);
+        border-top: 1px solid var(--color-line);
+      }
+
+      .h2 {
+        font-size: var(--text-h2);
+        letter-spacing: -0.02em;
+        margin: 0 0 0.6rem;
+      }
+
+      .section-lead {
+        color: var(--color-muted);
+        max-width: 64ch;
+        margin: 0 0 2.6rem;
+        font-size: 1.02rem;
+      }
+
+      .kicker {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin: 0 0 0.8rem;
+      }
+
+      /* Generic card grid */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+        gap: 1px;
+        background: var(--color-line);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+
+      .card {
+        background: var(--color-bg-raised);
+        padding: 1.6rem 1.5rem;
+      }
+
+      .card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.05rem;
+        font-family: var(--font-mono);
+        color: var(--color-accent);
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--color-muted);
+        font-size: 0.96rem;
+      }
+
+      /* Two-mode split */
+      .modes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .mode {
+        background: var(--color-bg-raised);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        padding: 1.6rem 1.5rem;
+      }
+
+      .mode h3 {
+        margin: 0 0 0.6rem;
+        font-size: 1.18rem;
+        letter-spacing: -0.01em;
+      }
+
+      .mode p {
+        margin: 0 0 1rem;
+        color: var(--color-muted);
+        font-size: 0.97rem;
+      }
+
+      .mode .tags {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .mode .tags li {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--color-text);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: 6px;
+        padding: 0.18rem 0.5rem;
+      }
+
+      /* Diagram */
+      .diagram {
+        background: var(--color-bg-raised);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        padding: 1.6rem;
+        overflow-x: auto;
+        margin: 0 0 1.6rem;
+      }
+
+      .diagram .mermaid {
+        margin: 0;
+        text-align: center;
+      }
+
+      .diagram .mermaid svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Worked example / callout */
+      .worked {
+        background: var(--color-bg-raised);
+        border: 1px solid var(--color-line);
+        border-left: 3px solid var(--color-accent);
+        border-radius: var(--radius);
+        padding: 1.6rem 1.6rem 1.4rem;
+      }
+
+      .worked p {
+        margin: 0 0 1rem;
+        color: var(--color-text);
+      }
+
+      .worked ol {
+        margin: 0;
+        padding-left: 1.2rem;
+        color: var(--color-muted);
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      .worked code {
+        font-family: var(--font-mono);
+        color: var(--color-text);
+      }
+
+      /* Command table */
+      .table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+      }
+
+      table.cmd {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        background: var(--color-bg-raised);
+      }
+
+      table.cmd th,
+      table.cmd td {
+        text-align: left;
+        padding: 0.85rem 1.1rem;
+        border-bottom: 1px solid var(--color-line);
+        vertical-align: top;
+      }
+
+      table.cmd tr:last-child td {
+        border-bottom: 0;
+      }
+
+      table.cmd th {
+        color: var(--color-muted);
+        font-weight: 600;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      table.cmd td code {
+        font-family: var(--font-mono);
+        color: var(--color-accent);
+        white-space: nowrap;
+      }
+
+      table.cmd td:last-child {
+        color: var(--color-muted);
+      }
+
+      /* Code blocks */
+      pre {
+        margin: 0;
+        padding: 1.4rem 1.5rem;
+        background: oklch(16% 0.01 50);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius);
+        max-width: 100%;
+        overflow-x: auto;
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--color-text);
+      }
+
+      pre .cmt {
+        color: var(--color-muted);
+      }
+
+      .stack {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.2rem;
+      }
+
+      .stack > * {
+        min-width: 0;
+      }
+
+      .install-note {
+        background: var(--color-accent-soft);
+        border: 1px solid var(--color-accent-line);
+        border-radius: var(--radius);
+        padding: 1.1rem 1.3rem;
+        color: var(--color-text);
+        font-size: 0.96rem;
+      }
+
+      .install-note strong {
+        color: var(--color-accent);
+      }
+
+      .install-note code,
+      .faq code {
+        font-family: var(--font-mono);
+        color: var(--color-text);
+      }
+
+      .sub {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+        margin: 2rem 0 0.7rem;
+      }
+
+      /* FAQ */
+      .faq dl {
+        margin: 0;
+        display: grid;
+        gap: 1.6rem;
+      }
+
+      .faq dt {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .faq dd {
+        margin: 0;
+        color: var(--color-muted);
+        max-width: 74ch;
+      }
+
+      /* Footer */
+      footer {
+        padding-block: 2.5rem;
+        border-top: 1px solid var(--color-line);
+        color: var(--color-muted);
+        font-size: 0.9rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 1rem;
+        align-items: center;
+      }
+
+      footer .spacer {
+        flex: 1;
+      }
+
+      footer a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding-inline: 0.35rem;
+        color: var(--color-muted);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: var(--color-text);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <nav class="wrap" aria-label="Primary">
+        <a class="brand" href="#main">claude-<span>plugin-cookbook</span></a>
+        <span class="spacer"></span>
+        <a href="#inside">What's inside</a>
+        <a href="#how">How it works</a>
+        <a href="#chapters">Chapters</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/odere-pro/claude-plugin-cookbook">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-heading">
+        <p class="eyebrow">A cookbook &amp; scaffolder for Claude Code · copy → configure → ship</p>
+        <h1 id="hero-heading">Build a Claude Code plugin, correctly the first time.</h1>
+        <p class="lead">
+          The <strong>Claude Plugin Cookbook</strong> documents the whole plugin contract —
+          manifest, skills, commands, subagents, hooks, rules, MCP, validation, distribution, and
+          repository hygiene — and ships a <strong>validated starter skeleton</strong> plus the
+          <code>/plugin-cookbook:new-plugin</code> skill that copies it into a new plugin and walks
+          the bootstrap-to-ship workflow. Everything stays
+          <code>claude plugin validate --strict</code>-clean.
+        </p>
+        <ul class="pills" aria-label="Highlights">
+          <li>15-chapter reference</li>
+          <li>validated skeleton</li>
+          <li>bootstrap playbook</li>
+          <li>strict-validated</li>
+          <li>CI gates</li>
+          <li>MIT</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-primary" href="#install">Get started</a>
+          <a class="btn btn-ghost" href="https://github.com/odere-pro/claude-plugin-cookbook"
+            >Read the cookbook</a
+          >
+        </div>
+      </section>
+
+      <!-- WHAT'S INSIDE -->
+      <section class="band" id="inside" aria-labelledby="inside-heading">
+        <div class="wrap">
+          <p class="kicker">What's inside</p>
+          <h2 class="h2" id="inside-heading">A reference and a working starter</h2>
+          <p class="section-lead">
+            This repository is <strong>both</strong> a reference cookbook for building Claude Code
+            plugins <strong>and</strong> the installable <code>plugin-cookbook</code> plugin itself
+            — whose <code>new-plugin</code> skill scaffolds a new plugin from the skeleton.
+          </p>
+          <div class="grid">
+            <article class="card">
+              <h3>15-chapter reference</h3>
+              <p>
+                <code>docs/cookbook/</code> documents one attribute per chapter — manifest, skills,
+                commands, subagents, hooks, rules, MCP, validation, distribution, supply-chain
+                governance, and repository hygiene.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Validated skeleton</h3>
+              <p>
+                <code>skeleton/</code> is a minimal, valid, loadable plugin that already passes
+                <code>claude plugin validate --strict</code>. Copy it — don't start from scratch.
+              </p>
+            </article>
+            <article class="card">
+              <h3>BOOTSTRAP playbook</h3>
+              <p>
+                <code>docs/cookbook/BOOTSTRAP.md</code> is an agent-followable playbook that turns a
+                plain repo into a well-formed plugin, step by step.
+              </p>
+            </article>
+            <article class="card">
+              <h3>The new-plugin skill</h3>
+              <p>
+                <code>/plugin-cookbook:new-plugin</code> copies the skeleton, fills the manifest,
+                runs strict validation, and initializes a clean git history — scaffolding for you.
+              </p>
+            </article>
+            <article class="card">
+              <h3>CI gates</h3>
+              <p>
+                <code>tests/gates/run-all.sh</code> ships standalone checks that enforce the
+                well-formed-plugin invariants — JSON, strict validation, links, secrets, local-only
+                hooks, changelog.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Governance, pre-wired</h3>
+              <p>
+                Conventional Commits, per-PR changelog fragments, CodeQL, and an OpenSSF Scorecard —
+                supply-chain and repository hygiene built in from chapter 13–14.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="band" id="how" aria-labelledby="how-heading">
+        <div class="wrap">
+          <p class="kicker">How it works</p>
+          <h2 class="h2" id="how-heading">Copy a validated starter, then ship</h2>
+          <p class="section-lead">
+            One mental model drives everything:
+            <strong>descriptions are always-on, bodies load on invoke</strong>. You copy a starter
+            that already validates, fill in the blanks one attribute at a time, keep it
+            strict-clean, and ship it to a marketplace as a versioned release.
+          </p>
+
+          <figure class="diagram">
+            <pre class="mermaid" aria-hidden="true">
+flowchart TD
+    A[/"new-plugin — copies the validated skeleton"/]
+    subgraph SC["scaffold"]
+      CP["copy skeleton/ → ./my-plugin"]
+      MF["fill plugin.json manifest"]
+      GI["init clean git history"]
+    end
+    subgraph CFG["configure — one attribute per chapter"]
+      SK["skills · commands · subagents"]
+      HK["hooks · rules · MCP"]
+    end
+    V["claude plugin validate --strict"]
+    A --> CP
+    CP --> MF
+    MF --> GI
+    GI --> SK
+    SK --> HK
+    HK --> V
+    V -->|gates pass| SHIP(["ship — marketplace · versioned release"])
+    V -. fails .-> SK
+
+    classDef accent fill:#3a2a20,stroke:#e0855f,color:#f3e7df;
+    class A,SHIP accent;
+            </pre>
+            <figcaption class="vh">
+              Flowchart: the new-plugin skill copies the validated skeleton into a new directory you
+              name, fills in the plugin.json manifest, and initializes a clean git history. You then
+              configure the plugin one attribute per chapter — skills, commands and subagents, then
+              hooks, rules and MCP — and run claude plugin validate --strict. When the gates pass,
+              you ship the plugin to a marketplace as a versioned release; if validation fails, you
+              loop back to fix the configuration.
+            </figcaption>
+          </figure>
+
+          <div class="worked">
+            <p>
+              Three ways to use it, from most hands-on to fully delegated — the same skeleton is the
+              spine of each:
+            </p>
+            <ol>
+              <li>
+                <strong>Copy</strong> — <code>cp -R skeleton/ ../my-plugin</code>, then follow
+                <code>BOOTSTRAP.md</code> and run
+                <code>claude plugin validate . --strict</code> yourself.
+              </li>
+              <li>
+                <strong>Template</strong> — click <em>Use this template</em> on GitHub, keep the
+                contents of <code>skeleton/</code> at the root, and delete <code>docs/</code>.
+              </li>
+              <li>
+                <strong>Ship with Claude</strong> — install the plugin and run
+                <code>/plugin-cookbook:new-plugin my-plugin</code> to scaffold, validate, and init
+                in one step.
+              </li>
+            </ol>
+          </div>
+
+          <div class="modes">
+            <article class="mode">
+              <h3>The reference</h3>
+              <p>
+                Fifteen chapters cite the whole plugin contract — one attribute at a time. Stable
+                chapter numbers mean you link <code>04-skills</code>, never "the skills chapter".
+              </p>
+              <ul class="tags">
+                <li>manifest</li>
+                <li>skills</li>
+                <li>commands</li>
+                <li>subagents</li>
+                <li>hooks · MCP</li>
+              </ul>
+            </article>
+            <article class="mode">
+              <h3>The scaffolder</h3>
+              <p>
+                The installable plugin turns the reference into action — copy the skeleton, fill the
+                manifest, validate strict, and start a clean history, without leaving your Claude
+                Code session.
+              </p>
+              <ul class="tags">
+                <li>/plugin-cookbook:new-plugin</li>
+                <li>skeleton/</li>
+                <li>validate --strict</li>
+                <li>git init</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHAPTERS -->
+      <section class="band" id="chapters" aria-labelledby="chapters-heading">
+        <div class="wrap">
+          <p class="kicker">The reference</p>
+          <h2 class="h2" id="chapters-heading">Fifteen chapters, one attribute each</h2>
+          <p class="section-lead">
+            The cookbook is a reference, not a linear book — cite one chapter at a time. Read them
+            on GitHub; numbers are stable.
+          </p>
+          <div class="table-wrap">
+            <table class="cmd">
+              <thead>
+                <tr>
+                  <th scope="col">Chapter</th>
+                  <th scope="col">What it covers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/00-overview.md"
+                        >00 · overview</a
+                      ></code
+                    >
+                  </td>
+                  <td>The mental model: descriptions are always-on, bodies load on invoke.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/01-anatomy-and-layout.md"
+                        >01 · anatomy &amp; layout</a
+                      ></code
+                    >
+                  </td>
+                  <td>Every recognized component, default locations, path variables.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/02-manifest.md"
+                        >02 · manifest</a
+                      ></code
+                    >
+                  </td>
+                  <td>
+                    <code>plugin.json</code> + <code>marketplace.json</code> + version-of-record.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/03-commands.md"
+                        >03 · commands</a
+                      ></code
+                    >
+                  </td>
+                  <td>Flat-file commands, arguments, dynamic context injection.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/04-skills.md"
+                        >04 · skills</a
+                      ></code
+                    >
+                  </td>
+                  <td>
+                    <code>SKILL.md</code> frontmatter, bundles, routing budget, invocation control.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/05-subagents.md"
+                        >05 · subagents</a
+                      ></code
+                    >
+                  </td>
+                  <td><code>agents/*.md</code>, least-privilege tools, delegation patterns.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/06-hooks.md"
+                        >06 · hooks</a
+                      ></code
+                    >
+                  </td>
+                  <td><code>hooks.json</code>, events, exit codes, the write-guard pattern.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/07-rules.md"
+                        >07 · rules</a
+                      ></code
+                    >
+                  </td>
+                  <td><code>paths:</code> rules vs plugin-shipped guidance.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/08-mcp.md"
+                        >08 · MCP</a
+                      ></code
+                    >
+                  </td>
+                  <td><code>.mcp.json</code>, path variables, secrets, pairing with skills.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/09-claude-md-and-author-config.md"
+                        >09 · CLAUDE.md &amp; config</a
+                      ></code
+                    >
+                  </td>
+                  <td>Shipped vs author-only config; repo transformation.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/10-validation-and-gates.md"
+                        >10 · validation &amp; gates</a
+                      ></code
+                    >
+                  </td>
+                  <td>The built-in validator + custom CI gates.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/11-distribution-and-versioning.md"
+                        >11 · distribution</a
+                      ></code
+                    >
+                  </td>
+                  <td>Marketplace, scopes, semver, updates.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/12-glossary.md"
+                        >12 · glossary</a
+                      ></code
+                    >
+                  </td>
+                  <td>The canonical vocabulary used across the cookbook.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/13-repository-hygiene.md"
+                        >13 · repository hygiene</a
+                      ></code
+                    >
+                  </td>
+                  <td>Init, Conventional Commits, history, lint/format, badges.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a
+                        href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/14-supply-chain-and-governance.md"
+                        >14 · supply chain</a
+                      ></code
+                    >
+                  </td>
+                  <td>OpenSSF, provenance, governance, Dependabot, changelog fragments.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="section-lead" style="margin-top: 1.6rem">
+            Also in the reference:
+            <code
+              ><a
+                href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/BOOTSTRAP.md"
+                >BOOTSTRAP.md</a
+              ></code
+            >
+            (the playbook) and
+            <code
+              ><a
+                href="https://github.com/odere-pro/claude-plugin-cookbook/blob/main/docs/cookbook/SOFTWARE-3-0.md"
+                >SOFTWARE-3-0.md</a
+              ></code
+            >
+            (why plugins should be agent-operable, not just agent-built).
+          </p>
+        </div>
+      </section>
+
+      <!-- INSTALL -->
+      <section class="band" id="install" aria-labelledby="install-heading">
+        <div class="wrap">
+          <p class="kicker">Get started</p>
+          <h2 class="h2" id="install-heading">Scaffold in three commands</h2>
+          <div class="stack">
+            <pre><code><span class="cmt"># In a Claude Code session — add the marketplace, then install</span>
+/plugin marketplace add odere-pro/claude-plugin-cookbook
+/plugin install plugin-cookbook@plugin-cookbook
+
+<span class="cmt"># Scaffold a new, already-valid plugin into ./my-plugin</span>
+/plugin-cookbook:new-plugin my-plugin</code></pre>
+
+            <div class="install-note">
+              <strong>It scaffolds, it doesn't touch your repo.</strong>
+              <code>/plugin-cookbook:new-plugin</code> copies the validated skeleton into a new
+              <code>./my-plugin</code> directory, fills in the manifest, runs
+              <code>claude plugin validate --strict</code>, and initializes a clean git history. The
+              skill is <code>disable-model-invocation</code> — it runs only when you invoke it by
+              name.
+            </div>
+
+            <pre><code><span class="cmt"># Prefer to drive it by hand? Copy the starter and validate</span>
+cp -R skeleton/ ../my-plugin &amp;&amp; cd ../my-plugin
+claude plugin validate . --strict
+
+<span class="cmt"># Develop this repo</span>
+bun install
+bun run lint:md &amp;&amp; bun run format:check   <span class="cmt"># markdown lint + prettier</span>
+bash tests/gates/run-all.sh               <span class="cmt"># the full gate suite</span></code></pre>
+
+            <p class="sub">New to plugins?</p>
+            <pre><code><span class="cmt"># Read the one mental model, then skim the index</span>
+open docs/cookbook/README.md   <span class="cmt"># or read it on GitHub</span></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="band faq" id="faq" aria-labelledby="faq-heading">
+        <div class="wrap">
+          <p class="kicker">Questions</p>
+          <h2 class="h2" id="faq-heading">Frequently asked questions</h2>
+          <dl>
+            <dt>What is the Claude Plugin Cookbook?</dt>
+            <dd>
+              It is both a reference and a working installable plugin for Claude Code. The cookbook
+              is a 15-chapter reference that documents the whole plugin contract — manifest, skills,
+              commands, subagents, hooks, rules, MCP, validation, distribution, and repository
+              hygiene — and it ships a validated starter skeleton plus the
+              <code>/plugin-cookbook:new-plugin</code> skill that scaffolds a new plugin from that
+              skeleton.
+            </dd>
+
+            <dt>Do I need to read the whole cookbook before building a plugin?</dt>
+            <dd>
+              No. Start with the one mental model in the overview, then either copy
+              <code>skeleton/</code> and follow the <code>BOOTSTRAP</code> playbook, or install the
+              plugin and run <code>/plugin-cookbook:new-plugin</code>. The 15 chapters are a
+              reference you cite one attribute at a time — not a linear book you must finish first.
+            </dd>
+
+            <dt>Does <code>/plugin-cookbook:new-plugin</code> change my repository?</dt>
+            <dd>
+              No. It copies the validated skeleton into a new directory you name (for example
+              <code>./my-plugin</code>), fills in that plugin's manifest, runs
+              <code>claude plugin validate --strict</code>, and initializes a clean git history
+              inside the new directory. It does not modify the repository you invoke it from.
+            </dd>
+
+            <dt>How is a plugin validated?</dt>
+            <dd>
+              Both the cookbook's root plugin and the skeleton stay
+              <code>claude plugin validate --strict</code>-clean. On top of the built-in validator,
+              the repo ships standalone CI gates (<code>tests/gates/run-all.sh</code>) that check
+              JSON parses, strict plugin validation, shell linting, no absolute machine paths, valid
+              doc links, markdown style, secret scanning, local-only hooks, and changelog/glossary
+              consistency.
+            </dd>
+
+            <dt>Can I use the cookbook as a GitHub template instead?</dt>
+            <dd>
+              Yes. The repository is a GitHub template — click <em>Use this template</em>
+              to get a new repo with the same baseline, then keep the contents of
+              <code>skeleton/</code> at the root and delete <code>docs/</code>. The skeleton already
+              ships a badged README, a <code>CHANGELOG.md</code>, a <code>CONTRIBUTING.md</code>,
+              and the lint/format/editor config.
+            </dd>
+
+            <dt>Will the plugin cost context when I'm not using it?</dt>
+            <dd>
+              The <code>new-plugin</code> skill is side-effecting, so it is
+              <code>disable-model-invocation</code> — it costs no standing context and only runs
+              when you invoke it by name. The cookbook reference is documentation in the repo, not
+              loaded into every session.
+            </dd>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <span>MIT licensed · plugin-cookbook v0.1.0</span>
+      <span class="spacer"></span>
+      <a href="https://github.com/odere-pro/claude-plugin-cookbook">GitHub</a>
+      <a href="https://github.com/odere-pro/claude-plugin-cookbook#readme">Docs</a>
+      <a href="https://github.com/odere-pro/claude-plugin-cookbook/issues">Issues</a>
+    </footer>
+
+    <!-- Pinned, SRI-verified mermaid bundle; the only third-party asset. -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"
+      integrity="sha384-rbtjAdnIQE/aQJGEgXrVUlMibdfTSa4PQju4HDhN3sR2PmaKFzhEafuePsl9H/9I"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script>
+      // Render the flow diagram once the deferred bundle and DOM are ready.
+      // If mermaid fails to load, the visually-hidden figcaption still describes
+      // the flow for assistive tech and crawlers.
+      window.addEventListener("DOMContentLoaded", function () {
+        if (!window.mermaid) return;
+        window.mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: "strict",
+          theme: "base",
+          flowchart: { useMaxWidth: true, curve: "basis" },
+          themeVariables: {
+            background: "#221b18",
+            primaryColor: "#2e2620",
+            primaryTextColor: "#f0e7df",
+            primaryBorderColor: "#5c5048",
+            secondaryColor: "#3a3029",
+            tertiaryColor: "#2e2620",
+            lineColor: "#b9a99c",
+            textColor: "#f0e7df",
+            mainBkg: "#2e2620",
+            nodeBorder: "#5c5048",
+            clusterBkg: "#221b18",
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            fontSize: "14px",
+          },
+        });
+        try {
+          window.mermaid.run({ querySelector: ".mermaid" });
+        } catch (e) {
+          /* leave the text fallback in place */
+        }
+      });
+    </script>
+  </body>
+</html>
