@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="claude-plugin-cookbook">
+  <rect width="32" height="32" rx="7" fill="#1c1714" />
+  <!-- an open cookbook: spine in the middle, two pages, a bookmark ribbon -->
+  <path d="M16 9 C13 7.6 9.4 7.6 6.6 8.6 L6.6 23.4 C9.4 22.4 13 22.4 16 23.8 Z" fill="#3a3029" stroke="#5c5048" stroke-width="1.1" stroke-linejoin="round" />
+  <path d="M16 9 C19 7.6 22.6 7.6 25.4 8.6 L25.4 23.4 C22.6 22.4 19 22.4 16 23.8 Z" fill="#2e2620" stroke="#5c5048" stroke-width="1.1" stroke-linejoin="round" />
+  <line x1="16" y1="9" x2="16" y2="23.8" stroke="#5c5048" stroke-width="1.1" />
+  <!-- recipe lines on the left page -->
+  <line x1="9" y1="12" x2="13.4" y2="12.4" stroke="#b9a99c" stroke-width="1.1" stroke-linecap="round" />
+  <line x1="9" y1="15" x2="13.4" y2="15.4" stroke="#b9a99c" stroke-width="1.1" stroke-linecap="round" />
+  <!-- bookmark ribbon in the accent -->
+  <path d="M19.4 7.2 L23 7.2 L23 14 L21.2 12.2 L19.4 14 Z" fill="#e0855f" />
+</svg>

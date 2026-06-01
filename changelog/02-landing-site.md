@@ -1,0 +1,1 @@
+- Landing site: add an SEO-optimized, framework-free `site/` landing page (meta + Open Graph + JSON-LD rich results, `robots.txt`, `sitemap.xml`, `llms.txt`, SVG favicon) published to GitHub Pages via a SHA-pinned, least-privilege `pages` workflow; README gains a matching scaffold-to-ship mermaid diagram.

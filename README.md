@@ -15,6 +15,29 @@ plugins. The cookbook documents the whole plugin contract — manifest, skills, 
 hooks, MCP, validation, distribution, and repository hygiene — and the `skeleton/` is a minimal plugin
 that already passes `claude plugin validate --strict`. Copy it, fill in the blanks, ship.
 
+```mermaid
+flowchart TD
+    A[/"new-plugin — copies the validated skeleton"/]
+    subgraph SC["scaffold"]
+      CP["copy skeleton/ → ./my-plugin"]
+      MF["fill plugin.json manifest"]
+      GI["init clean git history"]
+    end
+    subgraph CFG["configure — one attribute per chapter"]
+      SK["skills · commands · subagents"]
+      HK["hooks · rules · MCP"]
+    end
+    V["claude plugin validate --strict"]
+    A --> CP
+    CP --> MF
+    MF --> GI
+    GI --> SK
+    SK --> HK
+    HK --> V
+    V -->|gates pass| SHIP(["ship — marketplace · versioned release"])
+    V -. fails .-> SK
+```
+
 ## Quickstart
 
 ```bash
@@ -75,3 +98,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions and the PR checkli
 ## License
 
 [MIT](LICENSE)
+
+---
+
+[Landing page](https://odere-pro.github.io/claude-plugin-cookbook/) · [Cookbook](docs/cookbook/) · [MIT License](LICENSE)
